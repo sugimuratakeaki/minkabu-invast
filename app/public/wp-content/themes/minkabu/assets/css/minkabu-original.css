@@ -660,14 +660,26 @@ body.drawer-open {
     border-bottom: 1px solid rgba(255,255,255,0.1);
 }
 
+.slide__media_icon_box li {
+    border-right: 1px solid #4d586a;
+    border-bottom: 1px solid #4d586a;
+}
+
 .icon_box__col4 {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
     width: 25%;
     text-align: center;
 }
 
 .icon_box__text {
-    font-size: 11px;
+    font-size: 0.65em;
+    white-space: nowrap;
     margin-top: 5px;
+}
+
+.icon_box__text.fc-white {
+    color: #fff;
 }
 
 /* Flexbox Wrap */
