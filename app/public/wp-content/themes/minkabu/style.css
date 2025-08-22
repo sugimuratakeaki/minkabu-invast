@@ -100,3 +100,17 @@ input, textarea, select {
         padding: 20px 0;
     }
 }
+
+/* スマホ：スライドメニュー（サイドナビ）を太字にする */
+@media screen and (max-width: 768px) {
+    /* リスト型メニューのテキストのみ太字に */
+    #slide-menu .slide-list a span,
+    #slide-menu .slide-list label span {
+        font-weight: 700;
+    }
+
+    /* アイコン付きメニューのテキスト */
+    #slide-menu .icon_box__text {
+        font-weight: 700;
+    }
+}
