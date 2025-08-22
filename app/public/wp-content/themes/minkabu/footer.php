@@ -2,7 +2,7 @@
 
 <?php if (!wp_is_mobile()) : ?>
 <!-- PC Footer -->
-<footer id="pcFooter" class="footer pt5 mt10" style="padding-bottom: 90px;">
+<footer id="pcFooter" class="footer pt5 mt10">
     <nav>
         <ul class="breadcrumbs">
             <li><a href="https://minkabu.jp">TOP</a></li>
