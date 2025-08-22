@@ -546,3 +546,290 @@ body.drawer-open {
         padding: 20px 10px;
     }
 }
+
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    z-index: 1000;
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: #334155;
+    margin: 5px auto;
+    transition: all 0.3s ease-in-out;
+}
+
+.hamburger-menu.is-active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-menu.is-active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.is-active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: block;
+    }
+}
+
+/* Slideout Menu */
+.slideout-menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 85%;
+    max-width: 320px;
+    height: 100vh;
+    background-color: #334155;
+    color: #fff;
+    overflow-y: auto;
+    transition: right 0.3s ease;
+    z-index: 10001;
+}
+
+.slideout-menu-right {
+    right: -100%;
+}
+
+.slideout-menu.is-open {
+    right: 0;
+}
+
+/* Slideout Panel */
+.slideout-panel {
+    position: relative;
+    z-index: 997;
+    min-height: 100vh;
+    background-color: #edf1f4;
+    transition: transform 0.3s ease;
+}
+
+.slideout-open .slideout-panel {
+    transform: translateX(-85%);
+    max-width: 100%;
+}
+
+/* Slide Overlay */
+.slide-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 10000;
+}
+
+.slide-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Slide Close Button */
+.slide-close-btn {
+    text-align: right;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.slide-close-btn dt {
+    display: inline-block;
+}
+
+/* Slide Media Icon Box */
+.slide__media_icon_box {
+    padding: 20px 10px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.icon_box__col4 {
+    width: 25%;
+    text-align: center;
+}
+
+.icon_box__text {
+    font-size: 11px;
+    margin-top: 5px;
+}
+
+/* Flexbox Wrap */
+.flexbox_wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.flexbox_l-start {
+    justify-content: flex-start;
+}
+
+/* User Block */
+.user_block {
+    padding: 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sign_up_login {
+    text-align: center;
+}
+
+.sign_up_login a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.sign_up_login span {
+    margin: 0 10px;
+    color: rgba(255,255,255,0.5);
+}
+
+/* Slide List */
+.slide-list {
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.slide-list dt {
+    padding: 10px 20px;
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.slide-list dd {
+    margin: 0;
+}
+
+.item-pd {
+    padding: 12px 20px;
+}
+
+.slide-list a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.slide-list a:hover {
+    background-color: rgba(255,255,255,0.1);
+}
+
+/* Icons */
+.i-arrow_right::after {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-top: 2px solid rgba(255,255,255,0.6);
+    border-right: 2px solid rgba(255,255,255,0.6);
+    transform: rotate(45deg);
+}
+
+.i-arrow_down::after {
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-bottom: 2px solid rgba(255,255,255,0.6);
+    border-right: 2px solid rgba(255,255,255,0.6);
+    transform: rotate(45deg);
+}
+
+/* Accordion */
+.accordion {
+    display: none;
+}
+
+.accordion + label {
+    cursor: pointer;
+}
+
+.accordion:checked + label .i-arrow_down::after {
+    transform: rotate(-135deg);
+}
+
+.accordion + label + ul {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+}
+
+.accordion:checked + label + ul {
+    max-height: 1000px;
+}
+
+#links1 {
+    background-color: rgba(0,0,0,0.2);
+}
+
+#links1 li {
+    border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Slide Caution */
+.slide-caution {
+    padding: 20px;
+    list-style: none;
+}
+
+.slide-caution__item {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px;
+    color: rgba(255,255,255,0.6);
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.slide-caution details {
+    margin-top: 10px;
+}
+
+.slide-caution summary {
+    cursor: pointer;
+    list-style: none;
+}
+
+.slide-caution summary::-webkit-details-marker {
+    display: none;
+}
+
+/* Additional spacing utilities */
+.p5 { padding: 0.5em; }
+.p10 { padding: 1em; }
+.pt2 { padding-top: 0.2em; }
+.pb2 { padding-bottom: 0.2em; }
+.pb10 { padding-bottom: 10px; }
+.pr15 { padding-right: 15px; }
+.pl15 { padding-left: 15px; }
+.mt3 { margin-top: 0.3em; }
+.ml3 { margin-left: 0.3em; }
+.mr3 { margin-right: 0.3em; }
+.mb10 { margin-bottom: 10px; }
+
+/* Font utilities */
+.font-light { font-weight: 300; }
+.trit { text-align: right; }
+
+/* Prevent body scroll when menu is open */
+.slideout-open,
+.slideout-open body {
+    overflow: hidden;
+}

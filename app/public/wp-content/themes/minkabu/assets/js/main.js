@@ -1,5 +1,49 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Drawer functionality removed
+    // Slide Menu functionality for SP
+    const hamburgerMenu = document.getElementById('hamburgerMenu');
+    const slideMenu = document.getElementById('slide-menu');
+    const slideOverlay = document.getElementById('slideOverlay');
+    const slideCloseBtn = document.querySelector('.slide-close-btn');
+    const body = document.body;
+    
+    if (hamburgerMenu && slideMenu) {
+        // Open menu
+        hamburgerMenu.addEventListener('click', function() {
+            hamburgerMenu.classList.add('is-active');
+            slideMenu.classList.add('is-open');
+            slideOverlay.classList.add('is-open');
+            body.classList.add('slideout-open');
+        });
+        
+        // Close menu - close button
+        if (slideCloseBtn) {
+            slideCloseBtn.addEventListener('click', function() {
+                closeSlideMenu();
+            });
+        }
+        
+        // Close menu - overlay click
+        if (slideOverlay) {
+            slideOverlay.addEventListener('click', function() {
+                closeSlideMenu();
+            });
+        }
+        
+        // Close menu function
+        function closeSlideMenu() {
+            hamburgerMenu.classList.remove('is-active');
+            slideMenu.classList.remove('is-open');
+            slideOverlay.classList.remove('is-open');
+            body.classList.remove('slideout-open');
+        }
+        
+        // Close menu on ESC key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape' && slideMenu.classList.contains('is-open')) {
+                closeSlideMenu();
+            }
+        });
+    }
     
     // Magazine Dropdown Menu for PC
     const magazineDropdown = document.querySelector('.l-header__media__li:last-child');
