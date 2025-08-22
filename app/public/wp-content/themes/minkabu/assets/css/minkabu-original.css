@@ -702,6 +702,10 @@ body.drawer-open {
     color: #fff;
 }
 
+.fc-white {
+    color: #fff;
+}
+
 /* Flexbox Wrap */
 .flexbox_wrap {
     display: -webkit-box;
