@@ -1,0 +1,102 @@
+/*
+Theme Name: minkabu
+Theme URI: https://minkabu.co.jp
+Author: Minkabu Inc.
+Author URI: https://minkabu.co.jp
+Description: みんかぶ・インヴァスト証券の金融情報サイト用WordPressテーマ
+Version: 1.0
+License: GPL v2 or later
+Text Domain: minkabu
+*/
+
+/* リセットCSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    font-size: 62.5%; /* 10px = 1rem */
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: "Hiragino Kaku Gothic ProN", "ヒラギノ角ゴ ProN", "メイリオ", Meiryo, "ＭＳ Ｐゴシック", sans-serif;
+    font-size: 1.0rem; /* ≒ 15px (1rem=10px) */
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.3s ease;
+}
+
+a:hover {
+    opacity: 0.7;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    vertical-align: middle;
+}
+
+ul, ol {
+    list-style: none;
+}
+
+button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+input, textarea, select {
+    font-family: inherit;
+    font-size: inherit;
+}
+
+/* コンテナ */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* ユーティリティクラス */
+.pc-only {
+    display: block;
+}
+
+.sp-only {
+    display: none;
+}
+
+@media screen and (max-width: 768px) {
+    .pc-only {
+        display: none;
+    }
+    
+    .sp-only {
+        display: block;
+    }
+}
+
+/* メインコンテンツエリア */
+.main-content {
+    min-height: calc(100vh - 200px);
+    padding: 40px 0;
+}
+
+@media screen and (max-width: 768px) {
+    .main-content {
+        padding: 20px 0;
+    }
+}
