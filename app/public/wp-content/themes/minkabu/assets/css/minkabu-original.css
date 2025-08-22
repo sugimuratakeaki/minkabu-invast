@@ -276,6 +276,10 @@ a:active {
     display: block;
 }
 
+.icon_box__m-auto {
+    margin: auto;
+}
+
 /* SP Header specific styles */
 .sp_header {
     background: #fff;
@@ -833,14 +837,19 @@ body.drawer-open {
 
 /* Slide Caution */
 .slide-caution {
-    padding: 20px;
+    margin: 1.4em 0;
+    padding: 0.3em 0;
     list-style: none;
 }
 
 .slide-caution__item {
-    display: inline-block;
-    padding: 5px 10px;
-    margin: 5px;
+    display: block;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 2.7em;
+    padding: 0 1.4em;
+    line-height: 2.5em;
+    text-align: left;
     color: rgba(255,255,255,0.6);
     font-size: 12px;
     text-decoration: none;
