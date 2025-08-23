@@ -327,9 +327,8 @@
 <div class="slide-overlay" id="slideOverlay"></div>
 <?php endif; ?>
 
+<?php if (!wp_is_mobile()) : ?>
 <div class="l-container">
-    <?php if (!wp_is_mobile()) : ?>
-    <main id="main" class="l-main site-main">
-    <?php else : ?>
-    <main id="main" class="site-main slideout-panel">
-    <?php endif; ?>
+<?php else : ?>
+<main id="main" class="site-main slideout-panel">
+<?php endif; ?>

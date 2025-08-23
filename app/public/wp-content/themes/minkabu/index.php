@@ -5,8 +5,10 @@
 
 get_header(); ?>
 
-<div class="main-content">
-    <div class="container">
+<?php if (!wp_is_mobile()) : ?>
+<div class="l-main">
+<?php endif; ?>
+    <div class="main-content">
         <?php if (have_posts()) : ?>
             <div class="posts-grid">
                 <?php while (have_posts()) : the_post(); ?>
@@ -61,7 +63,9 @@ get_header(); ?>
             </div>
         <?php endif; ?>
     </div>
-</div>
+<?php if (!wp_is_mobile()) : ?>
+</div><!-- .l-main -->
+<?php endif; ?>
 
 <?php get_sidebar(); ?>
 <?php get_footer(); ?>

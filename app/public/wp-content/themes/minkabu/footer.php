@@ -1,5 +1,8 @@
-    </main><!-- #main -->
+<?php if (!wp_is_mobile()) : ?>
 </div><!-- .l-container -->
+<?php else : ?>
+</main><!-- #main -->
+<?php endif; ?>
 
 <?php if (!wp_is_mobile()) : ?>
 <!-- PC Footer -->
