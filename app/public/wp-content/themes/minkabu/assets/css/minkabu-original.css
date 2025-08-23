@@ -1048,3 +1048,61 @@ input, textarea, select {
     border-top: 2px solid #999;
     border-right: 2px solid #999;
 }
+
+/* WordPress Popular Posts Styles */
+.wpp-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.wpp-list .list-link__item {
+    position: relative;
+}
+
+.wpp-list img {
+    width: 75px;
+    height: 75px;
+    object-fit: cover;
+    margin-right: 10px;
+    border-radius: 4px;
+    float: left;
+}
+
+.wpp-list .flexbox {
+    overflow: hidden;
+}
+
+.wpp-list .list-link__item::after {
+    content: '';
+    display: table;
+    clear: both;
+}
+
+/* WPP Widget Custom Styles */
+.widget_wordpress-popular-posts {
+    margin-bottom: 30px;
+}
+
+.widget_wordpress-popular-posts h2,
+.widget_wordpress-popular-posts h3 {
+    margin: 0 0 0.3em;
+    padding: 0 0.3em 0.1em;
+    border-bottom: 1px solid #aaa;
+    font-size: 1.25em;
+}
+
+.widget_wordpress-popular-posts ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.widget_wordpress-popular-posts li {
+    border-bottom: 1px solid #e8e8e8;
+    padding: 10px 5px;
+}
+
+.widget_wordpress-popular-posts li:last-child {
+    border-bottom: none;
+}
