@@ -49,14 +49,26 @@ add_action('after_setup_theme', 'minkabu_theme_setup');
  * Register widget area
  */
 function minkabu_widgets_init() {
+    // メインサイドバー
     register_sidebar(array(
-        'name'          => __('サイドバー', 'minkabu'),
+        'name'          => 'サイドバー',
         'id'            => 'sidebar-1',
-        'description'   => __('サイドバーにウィジェットを追加（アクセスランキング、更新記事一覧など）', 'minkabu'),
-        'before_widget' => '<div id="%1$s" class="widget %2$s">',
-        'after_widget'  => '</div>',
-        'before_title'  => '<h3 class="widget-title">',
-        'after_title'   => '</h3>',
+        'description'   => 'サイドバーに表示するウィジェットを追加してください',
+        'before_widget' => '<section class="widget %2$s">',
+        'after_widget'  => '</section>',
+        'before_title'  => '<h2 class="h2-normal h2-icon">',
+        'after_title'   => '</h2>',
+    ));
+    
+    // Popular Posts専用エリア
+    register_sidebar(array(
+        'name'          => '人気記事エリア',
+        'id'            => 'popular-posts',
+        'description'   => 'WordPress Popular Postsウィジェット専用',
+        'before_widget' => '<section class="widget-popular %2$s">',
+        'after_widget'  => '</section>',
+        'before_title'  => '<h2 class="h2-normal h2-icon">',
+        'after_title'   => '</h2>',
     ));
 }
 add_action('widgets_init', 'minkabu_widgets_init');
