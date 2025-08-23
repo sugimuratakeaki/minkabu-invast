@@ -1,4 +1,5 @@
-</main><!-- #main -->
+    </main><!-- #main -->
+</div><!-- .l-container -->
 
 <?php if (!wp_is_mobile()) : ?>
 <!-- PC Footer -->
@@ -7,7 +8,7 @@
         <ul class="breadcrumbs">
             <li><a href="https://minkabu.jp">TOP</a></li>
             <li><a href="https://fx.minkabu.jp/">FX/為替</a></li>
-            <li>為替レート</li>
+            <li>インヴァスト証券紹介</li>
         </ul>
     </nav>
     <div class="footer__inner pt5">

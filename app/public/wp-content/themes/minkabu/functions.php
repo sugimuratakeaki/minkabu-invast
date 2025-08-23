@@ -46,6 +46,22 @@ function minkabu_theme_setup() {
 add_action('after_setup_theme', 'minkabu_theme_setup');
 
 /**
+ * Register widget area
+ */
+function minkabu_widgets_init() {
+    register_sidebar(array(
+        'name'          => __('サイドバー', 'minkabu'),
+        'id'            => 'sidebar-1',
+        'description'   => __('サイドバーにウィジェットを追加（アクセスランキング、更新記事一覧など）', 'minkabu'),
+        'before_widget' => '<div id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</div>',
+        'before_title'  => '<h3 class="widget-title">',
+        'after_title'   => '</h3>',
+    ));
+}
+add_action('widgets_init', 'minkabu_widgets_init');
+
+/**
  * スタイルシートとスクリプトの読み込み
  */
 function minkabu_enqueue_scripts() {

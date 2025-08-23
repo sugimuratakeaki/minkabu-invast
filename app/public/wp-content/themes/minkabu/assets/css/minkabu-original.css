@@ -898,3 +898,66 @@ body.drawer-open {
 .slideout-open body {
     overflow: hidden;
 }
+
+/* Layout Structure for PC */
+.l-container {
+    width: 1080px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+@media (min-width: 769px) {
+    .l-container::after {
+        content: '';
+        display: table;
+        clear: both;
+    }
+    
+    .l-main {
+        position: relative;
+        width: 744px;
+        float: left;
+    }
+    
+    .l-side {
+        width: 300px;
+        float: right;
+    }
+}
+
+@media (max-width: 768px) {
+    .l-container {
+        width: 100%;
+        padding: 10px;
+    }
+    
+    .l-main {
+        width: 100%;
+        float: none;
+    }
+    
+    .l-side {
+        display: none;
+    }
+}
+
+/* Widget Styles */
+.widget {
+    margin-bottom: 30px;
+    padding: 20px;
+    background: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.widget:last-child {
+    margin-bottom: 0;
+}
+
+.widget-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #014099;
+}
