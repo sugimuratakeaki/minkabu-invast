@@ -93,7 +93,6 @@ input, textarea, select {
 .main-content {
     min-height: calc(100vh - 200px);
     padding: 40px 0;
-    text-align: left;
 }
 
 @media screen and (max-width: 768px) {
@@ -125,7 +124,6 @@ input, textarea, select {
 }
 
 .minkabu-video-section .section-title {
-    text-align: center;
     font-size: 28px;
     margin-bottom: 40px;
     color: #333;
@@ -206,32 +204,25 @@ input, textarea, select {
 }
 
 /* ================================================
-   Global Text Alignment
+   Typography & Text Alignment
    ================================================ */
-/* Ensure all content areas default to left alignment */
-article, 
-.entry-content, 
-.post, 
-.page, 
-.widget,
-.widget-content,
-.post-content,
-.page-content,
-p, 
-li, 
-dd, 
-dt,
-blockquote {
-    text-align: left;
-}
-
-/* Override for specific centered elements */
+/* Headings - Center aligned */
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6,
 .site-title,
 .section-title,
 .widget-title,
+.page-title,
+.entry-title,
+.post-title {
+    text-align: center;
+}
+
+/* UI Elements - Center aligned */
 .pagination,
 .footer,
 .btn,
-.button {
+.button,
+.drawer-btn {
     text-align: center;
 }
