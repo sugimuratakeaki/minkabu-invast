@@ -556,6 +556,7 @@ details[open] .footer-sp-accordion-title::after {
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
     gap: 30px;
     margin-bottom: 40px;
+    text-align: left;
 }
 
 .post-item {
@@ -579,6 +580,7 @@ details[open] .footer-sp-accordion-title::after {
 
 .post-content {
     padding: 20px;
+    text-align: left;
 }
 
 .post-title {

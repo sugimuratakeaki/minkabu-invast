@@ -56,7 +56,7 @@ body {
     color: #334155;
     font-family: -apple-system, BlinkMacSystemFont, 'Hiragino Sans', 'Hiragino Kaku Gothic ProN', 'Noto Sans CJK JP', 'Noto Sans Japanese', 'Segoe UI', sans-serif;
     line-height: 1.5;
-    text-align: center;
+    text-align: left;
     word-break: break-all;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -904,11 +904,13 @@ input, textarea, select {
         position: relative;
         width: 744px;
         float: left;
+        text-align: left;
     }
     
     .l-side {
         width: 300px;
         float: right;
+        text-align: left;
     }
 }
 

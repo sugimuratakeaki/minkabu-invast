@@ -93,6 +93,7 @@ input, textarea, select {
 .main-content {
     min-height: calc(100vh - 200px);
     padding: 40px 0;
+    text-align: left;
 }
 
 @media screen and (max-width: 768px) {
@@ -202,4 +203,35 @@ input, textarea, select {
     .video-title {
         font-size: 16px;
     }
+}
+
+/* ================================================
+   Global Text Alignment
+   ================================================ */
+/* Ensure all content areas default to left alignment */
+article, 
+.entry-content, 
+.post, 
+.page, 
+.widget,
+.widget-content,
+.post-content,
+.page-content,
+p, 
+li, 
+dd, 
+dt,
+blockquote {
+    text-align: left;
+}
+
+/* Override for specific centered elements */
+.site-title,
+.section-title,
+.widget-title,
+.pagination,
+.footer,
+.btn,
+.button {
+    text-align: center;
 }
