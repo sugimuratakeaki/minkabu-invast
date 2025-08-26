@@ -36,3 +36,12 @@ Thumbs.db
 *~
 .vscode/
 .idea/
+
+# Claude Code files
+CLAUDE.md
+.serena/
+.claude/
+.claudetools/
+.claude-code/
+claude-session-*.json
+.claude-artifacts/

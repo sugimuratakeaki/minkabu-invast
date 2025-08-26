@@ -51,7 +51,7 @@
                     <li class="l-header__media__li"><a href="https://ins.minkabu.jp/">保険</a></li>
                     <li class="l-header__media__li">
                         <span class="l-header__media__li__hover l-header__media__li__arrow-s">マガジン</span>
-                        <div class="l-header__media__second flexbox flexbox_l-around tlft">
+                        <div class="l-header__media__second flexbox flexbox_l-around tlft fs-s">
                             <ul>
                                 <li class="l-header__media__second__li text-link">
                                     <a title="マガジンTOP" class="l-header__nav__second__link" href="https://mag.minkabu.jp/">マガジンTOP</a>
