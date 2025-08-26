@@ -5,6 +5,11 @@
 
 get_header(); ?>
 
+<?php 
+// 動画カルーセルセクション
+echo do_shortcode('[minkabu_video_carousel]');
+?>
+
 <?php if (!wp_is_mobile()) : ?>
 <div class="l-main">
 <?php endif; ?>
