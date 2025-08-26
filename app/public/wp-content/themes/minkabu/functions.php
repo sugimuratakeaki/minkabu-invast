@@ -418,109 +418,14 @@ function minkabu_enqueue_carousel_assets() {
             true
         );
         
-        // カスタムカルーセルCSS
-        wp_add_inline_style('minkabu-main', '
-            .minkabu-video-section {
-                padding: 60px 0;
-                background-color: #f8f9fa;
-            }
-            .minkabu-video-section .section-title {
-                text-align: center;
-                font-size: 28px;
-                margin-bottom: 40px;
-                color: #333;
-            }
-            .video-carousel {
-                position: relative;
-                padding: 0 50px;
-            }
-            .video-item {
-                background: white;
-                border-radius: 8px;
-                overflow: hidden;
-                box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            }
-            .video-wrapper {
-                position: relative;
-                padding-bottom: 56.25%;
-                height: 0;
-                overflow: hidden;
-            }
-            .video-wrapper iframe {
-                position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-            }
-            .video-title {
-                padding: 15px 20px 10px;
-                font-size: 18px;
-                font-weight: bold;
-                color: #333;
-            }
-            .video-description {
-                padding: 0 20px 20px;
-                font-size: 14px;
-                color: #666;
-                line-height: 1.6;
-            }
-            .swiper-button-prev,
-            .swiper-button-next {
-                color: #333;
-            }
-            .swiper-pagination-bullet-active {
-                background-color: #333;
-            }
-            @media (max-width: 768px) {
-                .minkabu-video-section {
-                    padding: 40px 0;
-                }
-                .minkabu-video-section .section-title {
-                    font-size: 24px;
-                    margin-bottom: 30px;
-                }
-                .video-carousel {
-                    padding: 0;
-                }
-                .swiper-button-prev,
-                .swiper-button-next {
-                    display: none;
-                }
-                .video-title {
-                    font-size: 16px;
-                }
-            }
-        ');
-        
         // カルーセル初期化スクリプト
-        wp_add_inline_script('swiper', '
-            document.addEventListener("DOMContentLoaded", function() {
-                new Swiper(".video-carousel", {
-                    slidesPerView: 1,
-                    spaceBetween: 30,
-                    loop: true,
-                    pagination: {
-                        el: ".swiper-pagination",
-                        clickable: true
-                    },
-                    navigation: {
-                        nextEl: ".swiper-button-next",
-                        prevEl: ".swiper-button-prev"
-                    },
-                    breakpoints: {
-                        640: {
-                            slidesPerView: 2,
-                            spaceBetween: 20
-                        },
-                        1024: {
-                            slidesPerView: 3,
-                            spaceBetween: 30
-                        }
-                    }
-                });
-            });
-        ');
+        wp_enqueue_script(
+            'minkabu-video-carousel',
+            get_template_directory_uri() . '/assets/js/video-carousel.js',
+            array('swiper'),
+            '1.0.0',
+            true
+        );
     }
 }
 add_action('wp_enqueue_scripts', 'minkabu_enqueue_carousel_assets');
@@ -655,3 +560,733 @@ function minkabu_video_page_attributes() {
     add_post_type_support('minkabu_video', 'page-attributes');
 }
 add_action('init', 'minkabu_video_page_attributes', 11);
+
+/**
+ * FAQカスタム投稿タイプの登録
+ */
+function minkabu_register_faq_post_type() {
+    $labels = array(
+        'name'               => 'よくある質問',
+        'singular_name'      => 'FAQ',
+        'menu_name'          => 'FAQ管理',
+        'add_new'            => '新規追加',
+        'add_new_item'       => '新規FAQを追加',
+        'edit_item'          => 'FAQを編集',
+        'new_item'           => '新規FAQ',
+        'view_item'          => 'FAQを表示',
+        'search_items'       => 'FAQを検索',
+        'not_found'          => 'FAQが見つかりません',
+        'not_found_in_trash' => 'ゴミ箱にFAQが見つかりません',
+        'all_items'          => 'すべてのFAQ',
+    );
+    
+    $args = array(
+        'labels'              => $labels,
+        'public'              => false,
+        'show_ui'             => true,
+        'show_in_menu'        => true,
+        'menu_position'       => 6,
+        'menu_icon'           => 'dashicons-editor-help',
+        'supports'            => array('title', 'editor', 'page-attributes'),
+        'has_archive'         => false,
+        'rewrite'             => false,
+        'show_in_rest'        => true, // ブロックエディタを有効化
+        'hierarchical'        => false,
+        'capability_type'     => 'post',
+    );
+    
+    register_post_type('minkabu_faq', $args);
+}
+add_action('init', 'minkabu_register_faq_post_type');
+
+/**
+ * FAQカテゴリータクソノミーの登録
+ */
+function minkabu_register_faq_taxonomy() {
+    $labels = array(
+        'name'              => 'FAQカテゴリー',
+        'singular_name'     => 'FAQカテゴリー',
+        'search_items'      => 'カテゴリーを検索',
+        'all_items'         => 'すべてのカテゴリー',
+        'parent_item'       => '親カテゴリー',
+        'parent_item_colon' => '親カテゴリー:',
+        'edit_item'         => 'カテゴリーを編集',
+        'update_item'       => 'カテゴリーを更新',
+        'add_new_item'      => '新規カテゴリーを追加',
+        'new_item_name'     => '新規カテゴリー名',
+        'menu_name'         => 'FAQカテゴリー',
+    );
+    
+    $args = array(
+        'labels'            => $labels,
+        'hierarchical'      => true,
+        'public'            => false,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'show_in_nav_menus' => false,
+        'show_tagcloud'     => false,
+        'show_in_rest'      => true,
+        'rewrite'           => false,
+    );
+    
+    register_taxonomy('faq_category', 'minkabu_faq', $args);
+}
+add_action('init', 'minkabu_register_faq_taxonomy');
+
+/**
+ * FAQ用メタボックスの追加
+ */
+function minkabu_add_faq_meta_boxes() {
+    add_meta_box(
+        'minkabu_faq_settings',
+        'FAQ表示設定',
+        'minkabu_faq_settings_callback',
+        'minkabu_faq',
+        'side',
+        'high'
+    );
+}
+add_action('add_meta_boxes', 'minkabu_add_faq_meta_boxes');
+
+/**
+ * FAQメタボックスのコールバック
+ */
+function minkabu_faq_settings_callback($post) {
+    wp_nonce_field('minkabu_faq_settings_nonce', 'minkabu_faq_settings_nonce');
+    $show_on_top = get_post_meta($post->ID, '_minkabu_faq_show_on_top', true);
+    ?>
+    <p>
+        <label>
+            <input type="checkbox" name="minkabu_faq_show_on_top" value="1" <?php checked($show_on_top, '1'); ?> />
+            トップページに表示する
+        </label>
+    </p>
+    <p class="description">チェックを入れると、このFAQがトップページのFAQセクションに表示されます。</p>
+    <?php
+}
+
+/**
+ * FAQメタボックスの保存処理
+ */
+function minkabu_save_faq_meta($post_id) {
+    // nonce確認
+    if (!isset($_POST['minkabu_faq_settings_nonce']) || !wp_verify_nonce($_POST['minkabu_faq_settings_nonce'], 'minkabu_faq_settings_nonce')) {
+        return;
+    }
+    
+    // 自動保存の場合は処理しない
+    if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
+        return;
+    }
+    
+    // 権限確認
+    if (!current_user_can('edit_post', $post_id)) {
+        return;
+    }
+    
+    // トップページ表示設定の保存
+    $show_on_top = isset($_POST['minkabu_faq_show_on_top']) ? '1' : '0';
+    update_post_meta($post_id, '_minkabu_faq_show_on_top', $show_on_top);
+}
+add_action('save_post_minkabu_faq', 'minkabu_save_faq_meta');
+
+/**
+ * FAQ管理画面のカラムカスタマイズ
+ */
+function minkabu_faq_columns($columns) {
+    $new_columns = array();
+    foreach($columns as $key => $value) {
+        $new_columns[$key] = $value;
+        if ($key == 'title') {
+            $new_columns['faq_answer'] = '回答（抜粋）';
+        }
+    }
+    $new_columns['show_on_top'] = 'トップページ';
+    $new_columns['menu_order'] = '並び順';
+    return $new_columns;
+}
+add_filter('manage_minkabu_faq_posts_columns', 'minkabu_faq_columns');
+
+/**
+ * FAQカスタムカラムの内容表示
+ */
+function minkabu_faq_column_content($column_name, $post_id) {
+    if ($column_name == 'faq_answer') {
+        $content = get_post_field('post_content', $post_id);
+        $excerpt = wp_trim_words(strip_tags($content), 20, '...');
+        echo esc_html($excerpt);
+    }
+    if ($column_name == 'show_on_top') {
+        $show_on_top = get_post_meta($post_id, '_minkabu_faq_show_on_top', true);
+        echo $show_on_top == '1' ? '<span style="color:#46b450;">●</span> 表示' : '－';
+    }
+    if ($column_name == 'menu_order') {
+        $post = get_post($post_id);
+        echo $post->menu_order;
+    }
+}
+add_action('manage_minkabu_faq_posts_custom_column', 'minkabu_faq_column_content', 10, 2);
+
+/**
+ * FAQ投稿タイプを並び順でソート可能にする
+ */
+function minkabu_faq_sortable_columns($columns) {
+    $columns['menu_order'] = 'menu_order';
+    return $columns;
+}
+add_filter('manage_edit-minkabu_faq_sortable_columns', 'minkabu_faq_sortable_columns');
+
+/**
+ * FAQ表示用のヘルパー関数
+ */
+function minkabu_get_faqs($args = array()) {
+    $defaults = array(
+        'post_type' => 'minkabu_faq',
+        'posts_per_page' => -1,
+        'orderby' => 'menu_order',
+        'order' => 'ASC',
+        'post_status' => 'publish',
+    );
+    
+    $args = wp_parse_args($args, $defaults);
+    return get_posts($args);
+}
+
+/**
+ * FAQセクションのHTML出力
+ */
+function minkabu_render_faq_section($faqs, $title = 'よくある質問', $class = 'faq-section') {
+    if (empty($faqs)) {
+        return '';
+    }
+    
+    ob_start();
+    ?>
+    <div class="<?php echo esc_attr($class); ?>">
+        <h2 class="faq-section-title"><?php echo esc_html($title); ?></h2>
+        <div class="faq-list">
+            <?php foreach ($faqs as $faq) : ?>
+                <div class="faq-item" data-faq-id="<?php echo $faq->ID; ?>">
+                    <div class="faq-question">
+                        <span class="faq-q">Q</span>
+                        <h3 class="faq-title"><?php echo esc_html($faq->post_title); ?></h3>
+                        <span class="faq-toggle">
+                            <span class="faq-toggle-icon"></span>
+                        </span>
+                    </div>
+                    <div class="faq-answer">
+                        <span class="faq-a">A</span>
+                        <div class="faq-content">
+                            <?php echo apply_filters('the_content', $faq->post_content); ?>
+                        </div>
+                    </div>
+                </div>
+            <?php endforeach; ?>
+        </div>
+    </div>
+    <?php
+    return ob_get_clean();
+}
+
+/**
+ * FAQショートコード
+ */
+function minkabu_faq_shortcode($atts) {
+    $atts = shortcode_atts(array(
+        'category' => '',
+        'count' => -1,
+        'show_on_top' => false,
+        'title' => 'よくある質問',
+    ), $atts);
+    
+    $args = array(
+        'posts_per_page' => $atts['count'],
+    );
+    
+    // カテゴリー指定がある場合
+    if (!empty($atts['category'])) {
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'faq_category',
+                'field' => 'slug',
+                'terms' => $atts['category'],
+            ),
+        );
+    }
+    
+    // トップページ表示のみを取得
+    if ($atts['show_on_top']) {
+        $args['meta_query'] = array(
+            array(
+                'key' => '_minkabu_faq_show_on_top',
+                'value' => '1',
+                'compare' => '=',
+            ),
+        );
+    }
+    
+    $faqs = minkabu_get_faqs($args);
+    return minkabu_render_faq_section($faqs, $atts['title']);
+}
+add_shortcode('minkabu_faq', 'minkabu_faq_shortcode');
+
+/**
+ * カテゴリーページ下段にFAQを自動表示
+ */
+function minkabu_category_faq_section() {
+    if (!is_category()) {
+        return;
+    }
+    
+    $category = get_queried_object();
+    $category_slug = $category->slug;
+    
+    // カテゴリーに対応するFAQカテゴリーがあるか確認
+    $faq_category = get_term_by('slug', $category_slug, 'faq_category');
+    
+    if (!$faq_category) {
+        return;
+    }
+    
+    $args = array(
+        'tax_query' => array(
+            array(
+                'taxonomy' => 'faq_category',
+                'field' => 'term_id',
+                'terms' => $faq_category->term_id,
+            ),
+        ),
+    );
+    
+    $faqs = minkabu_get_faqs($args);
+    
+    if (!empty($faqs)) {
+        $title = $category->name . 'に関するよくある質問';
+        echo minkabu_render_faq_section($faqs, $title, 'faq-section faq-category-section');
+    }
+}
+// カテゴリーテンプレートで使用するため、アクションフックは追加しない（テンプレート側で直接呼び出し）
+
+/**
+ * トップページ用FAQセクション
+ */
+function minkabu_frontpage_faq_section() {
+    $args = array(
+        'meta_query' => array(
+            array(
+                'key' => '_minkabu_faq_show_on_top',
+                'value' => '1',
+                'compare' => '=',
+            ),
+        ),
+    );
+    
+    $faqs = minkabu_get_faqs($args);
+    
+    if (!empty($faqs)) {
+        echo minkabu_render_faq_section($faqs, 'よくある質問', 'faq-section faq-frontpage-section');
+    }
+}
+// トップページテンプレートで使用するため、アクションフックは追加しない（テンプレート側で直接呼び出し）
+
+/**
+ * FAQ用のスタイルとスクリプトを追加
+ */
+function minkabu_enqueue_faq_assets() {
+    // FAQスタイル - minkabu-original.cssに移動済み
+    // 以下のスタイルは minkabu-original.css に移動しました
+    /*
+    wp_add_inline_style('minkabu-main', '
+        .faq-section {
+            padding: 60px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .faq-section-title {
+            text-align: center;
+            font-size: 28px;
+            margin-bottom: 40px;
+            color: #333;
+            font-weight: bold;
+            position: relative;
+            padding-bottom: 20px;
+        }
+        
+        .faq-section-title:after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 3px;
+            background-color: #007cba;
+        }
+        
+        .faq-list {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: box-shadow 0.3s ease;
+        }
+        
+        .faq-item:hover {
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+        }
+        
+        .faq-question {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            position: relative;
+            transition: background-color 0.3s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: #f0f7ff;
+        }
+        
+        .faq-item.active .faq-question {
+            background-color: #f0f7ff;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        
+        .faq-q {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #007cba;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 50%;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .faq-title {
+            flex: 1;
+            margin: 0;
+            font-size: 18px;
+            font-weight: bold;
+            color: #333;
+            line-height: 1.5;
+            padding-right: 40px;
+        }
+        
+        .faq-toggle {
+            position: absolute;
+            right: 25px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .faq-toggle-icon {
+            position: relative;
+            width: 20px;
+            height: 20px;
+        }
+        
+        .faq-toggle-icon:before,
+        .faq-toggle-icon:after {
+            content: "";
+            position: absolute;
+            background-color: #666;
+            transition: transform 0.3s ease;
+        }
+        
+        .faq-toggle-icon:before {
+            top: 50%;
+            left: 0;
+            width: 20px;
+            height: 2px;
+            transform: translateY(-50%);
+        }
+        
+        .faq-toggle-icon:after {
+            top: 0;
+            left: 50%;
+            width: 2px;
+            height: 20px;
+            transform: translateX(-50%);
+        }
+        
+        .faq-item.active .faq-toggle-icon:after {
+            transform: translateX(-50%) rotate(90deg);
+            opacity: 0;
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease;
+            background-color: white;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 1000px;
+        }
+        
+        .faq-answer > * {
+            padding: 25px;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .faq-a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: #46b450;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            border-radius: 50%;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .faq-content {
+            flex: 1;
+            font-size: 16px;
+            line-height: 1.8;
+            color: #555;
+        }
+        
+        .faq-content p {
+            margin: 0 0 15px 0;
+        }
+        
+        .faq-content p:last-child {
+            margin-bottom: 0;
+        }
+        
+        .faq-category-section {
+            background-color: white;
+            padding: 40px 0;
+            margin-top: 40px;
+            border-top: 2px solid #e5e5e5;
+        }
+        
+        .faq-frontpage-section {
+            background: linear-gradient(to bottom, #f8f9fa, white);
+        }
+        
+        @media (max-width: 768px) {
+            .faq-section {
+                padding: 40px 0;
+            }
+            
+            .faq-section-title {
+                font-size: 24px;
+                margin-bottom: 30px;
+            }
+            
+            .faq-list {
+                padding: 0 15px;
+            }
+            
+            .faq-question {
+                padding: 15px 20px;
+            }
+            
+            .faq-q,
+            .faq-a {
+                width: 32px;
+                height: 32px;
+                font-size: 16px;
+                margin-right: 15px;
+            }
+            
+            .faq-title {
+                font-size: 16px;
+                padding-right: 30px;
+            }
+            
+            .faq-toggle {
+                right: 20px;
+                width: 24px;
+                height: 24px;
+            }
+            
+            .faq-toggle-icon {
+                width: 16px;
+                height: 16px;
+            }
+            
+            .faq-toggle-icon:before {
+                width: 16px;
+            }
+            
+            .faq-toggle-icon:after {
+                height: 16px;
+            }
+            
+            .faq-answer > * {
+                padding: 20px;
+            }
+            
+            .faq-content {
+                font-size: 14px;
+            }
+        }
+    ');
+    */
+    
+    // FAQ JavaScript
+    wp_enqueue_script(
+        'minkabu-faq',
+        get_template_directory_uri() . '/assets/js/faq.js',
+        array(),
+        '1.0.0',
+        true
+    );
+}
+add_action('wp_enqueue_scripts', 'minkabu_enqueue_faq_assets');
+
+/**
+ * FAQ管理画面での通知とサンプルデータ登録
+ */
+function minkabu_faq_admin_notices() {
+    $screen = get_current_screen();
+    if ($screen->post_type !== 'minkabu_faq') {
+        return;
+    }
+    
+    // 既にFAQが登録されているかチェック
+    $faqs = get_posts(array(
+        'post_type' => 'minkabu_faq',
+        'posts_per_page' => 1,
+    ));
+    
+    if (empty($faqs) && !isset($_GET['faq_sample_imported'])) {
+        ?>
+        <div class="notice notice-info">
+            <p>まだFAQが登録されていません。サンプルFAQを登録しますか？</p>
+            <p><a href="<?php echo admin_url('edit.php?post_type=minkabu_faq&import_faq_samples=1'); ?>" class="button button-primary">サンプルFAQを登録</a></p>
+        </div>
+        <?php
+    }
+    
+    if (isset($_GET['faq_sample_imported'])) {
+        ?>
+        <div class="notice notice-success is-dismissible">
+            <p>サンプルFAQが正常に登録されました。</p>
+        </div>
+        <?php
+    }
+}
+add_action('admin_notices', 'minkabu_faq_admin_notices');
+
+/**
+ * サンプルFAQのインポート処理
+ */
+function minkabu_import_sample_faqs() {
+    if (!isset($_GET['import_faq_samples']) || $_GET['import_faq_samples'] != '1') {
+        return;
+    }
+    
+    if (!current_user_can('manage_options')) {
+        return;
+    }
+    
+    // FAQカテゴリーの作成
+    $general_cat = wp_insert_term('一般', 'faq_category', array(
+        'description' => 'トライオートFXに関する一般的な質問',
+        'slug' => 'general',
+    ));
+    
+    $trading_cat = wp_insert_term('取引', 'faq_category', array(
+        'description' => '取引に関する質問',
+        'slug' => 'trading',
+    ));
+    
+    // サンプルFAQデータ
+    $sample_faqs = array(
+        array(
+            'title' => 'トライオートFXとは、どのようなサービスですか？',
+            'content' => 'トライオートFXは、インヴァスト証券が提供するFX（外国為替証拠金取引）の自動売買サービスです。あらかじめ設定されたルールに基づいて、システムが24時間自動で取引を行います。投資家は自分の投資スタイルに合った自動売買プログラムを選択するだけで、専門知識がなくても効率的な取引が可能です。',
+            'category' => isset($general_cat['term_id']) ? $general_cat['term_id'] : null,
+            'show_on_top' => '1',
+            'menu_order' => 1,
+        ),
+        array(
+            'title' => '自動売買と裁量取引の違いは何ですか？',
+            'content' => '自動売買は、プログラムが事前に設定されたルールに従って自動的に取引を行います。感情に左右されることなく、24時間市場を監視して取引機会を逃しません。一方、裁量取引は投資家自身が市場を分析し、売買のタイミングを判断して取引を行います。トライオートFXでは、両方の取引スタイルを組み合わせることも可能です。',
+            'category' => isset($general_cat['term_id']) ? $general_cat['term_id'] : null,
+            'show_on_top' => '1',
+            'menu_order' => 2,
+        ),
+        array(
+            'title' => '初心者でもトライオートFXを始められますか？',
+            'content' => 'はい、始められます。トライオートFXは、専門知識がなくても始められるように設計されています。あらかじめ用意された自動売買プログラムから選ぶだけで取引を開始できます。また、デモ取引機能で練習することも可能です。さらに、充実したサポート体制と学習コンテンツにより、初心者の方でも安心して取引を始められます。',
+            'category' => isset($general_cat['term_id']) ? $general_cat['term_id'] : null,
+            'show_on_top' => '1',
+            'menu_order' => 3,
+        ),
+        array(
+            'title' => '最低いくらから取引できますか？',
+            'content' => 'トライオートFXでは、1,000通貨単位から取引が可能です。米ドル/円の場合、レバレッジ25倍を活用すれば、約5,000円から取引を開始できます。ただし、余裕を持った資金管理のため、10万円程度の証拠金があると、より安定した取引が可能になります。また、通貨ペアやレートの変動により必要証拠金は変動しますので、取引前に必ず最新の情報をご確認ください。',
+            'category' => isset($trading_cat['term_id']) ? $trading_cat['term_id'] : null,
+            'show_on_top' => '1',
+            'menu_order' => 4,
+        ),
+        array(
+            'title' => '取引手数料はかかりますか？',
+            'content' => 'トライオートFXの取引手数料は無料です。ただし、売値と買値の差であるスプレッドが実質的なコストとなります。スプレッドは通貨ペアや市場状況により変動します。詳細な最新のスプレッド情報は、公式サイトでご確認ください。',
+            'category' => isset($trading_cat['term_id']) ? $trading_cat['term_id'] : null,
+            'show_on_top' => '0',
+            'menu_order' => 5,
+        ),
+        array(
+            'title' => 'どんな通貨ペアで取引できますか？',
+            'content' => 'トライオートFXでは、主要通貨ペアから高金利通貨まで、17通貨ペアの取引が可能です。米ドル/円、ユーロ/円、ポンド/円などの主要通貨ペアはもちろん、豪ドル/円、NZドル/円、南アフリカランド/円などの高金利通貨ペアも取り扱っています。',
+            'category' => isset($trading_cat['term_id']) ? $trading_cat['term_id'] : null,
+            'show_on_top' => '0',
+            'menu_order' => 6,
+        ),
+    );
+    
+    foreach ($sample_faqs as $faq) {
+        $post_data = array(
+            'post_title' => $faq['title'],
+            'post_content' => $faq['content'],
+            'post_status' => 'publish',
+            'post_type' => 'minkabu_faq',
+            'menu_order' => $faq['menu_order'],
+        );
+        
+        $post_id = wp_insert_post($post_data);
+        
+        if (!is_wp_error($post_id)) {
+            // カテゴリーの設定
+            if ($faq['category']) {
+                wp_set_post_terms($post_id, array($faq['category']), 'faq_category');
+            }
+            
+            // トップページ表示設定
+            update_post_meta($post_id, '_minkabu_faq_show_on_top', $faq['show_on_top']);
+        }
+    }
+    
+    // リダイレクト
+    wp_redirect(admin_url('edit.php?post_type=minkabu_faq&faq_sample_imported=1'));
+    exit;
+}
+add_action('admin_init', 'minkabu_import_sample_faqs');

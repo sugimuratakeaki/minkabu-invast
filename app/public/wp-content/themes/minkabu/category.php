@@ -1,19 +1,25 @@
 <?php
 /**
- * The main template file
+ * The template for displaying category archive pages
  */
 
 get_header(); ?>
-
-<?php 
-// 動画カルーセルセクション
-echo do_shortcode('[minkabu_video_carousel]');
-?>
 
 <?php if (!wp_is_mobile()) : ?>
 <div class="l-main">
 <?php endif; ?>
     <div class="main-content">
+        <header class="archive-header">
+            <h1 class="archive-title">
+                <?php single_cat_title(); ?>
+            </h1>
+            <?php if (category_description()) : ?>
+                <div class="archive-description">
+                    <?php echo category_description(); ?>
+                </div>
+            <?php endif; ?>
+        </header>
+
         <?php if (have_posts()) : ?>
             <div class="posts-grid">
                 <?php while (have_posts()) : the_post(); ?>
@@ -35,11 +41,6 @@ echo do_shortcode('[minkabu_video_carousel]');
                                     <time class="post-date" datetime="<?php echo get_the_date('c'); ?>">
                                         <?php echo get_the_date(); ?>
                                     </time>
-                                    <?php if (has_category()) : ?>
-                                        <div class="post-categories">
-                                            <?php the_category(', '); ?>
-                                        </div>
-                                    <?php endif; ?>
                                 </div>
                             </header>
                             
@@ -63,20 +64,19 @@ echo do_shortcode('[minkabu_video_carousel]');
         <?php else : ?>
             <div class="no-posts">
                 <h2>記事が見つかりませんでした</h2>
-                <p>お探しの記事は見つかりませんでした。他のキーワードで検索してみてください。</p>
-                <?php get_search_form(); ?>
+                <p>このカテゴリーにはまだ記事がありません。</p>
             </div>
         <?php endif; ?>
-        
-        <?php 
-        // FAQセクション（トップページ表示用）
-        minkabu_frontpage_faq_section();
-        ?>
     </div>
 <?php if (!wp_is_mobile()) : ?>
 </div><!-- .l-main -->
 <?php endif; ?>
 
 <?php get_sidebar(); ?>
+
+<?php 
+// カテゴリーページ下段にFAQを自動表示
+minkabu_category_faq_section();
+?>
 
 <?php get_footer(); ?>
