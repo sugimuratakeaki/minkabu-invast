@@ -1,0 +1,249 @@
+/* =============================================
+   VIDEO CAROUSEL STYLES - Modern Card Design
+============================================= */
+
+/* Section Container */
+.minkabu-video-section {
+    background: #f5f7fa;
+    padding: 40px 0;
+    margin: 0 0 40px;
+}
+
+.minkabu-video-section .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Section Title */
+.minkabu-video-section .section-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 30px;
+    color: #1a1a1a;
+    text-align: center;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.minkabu-video-section .section-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 3px;
+    background: #dc000c;
+    border-radius: 2px;
+}
+
+/* Swiper Container */
+.video-carousel {
+    position: relative;
+    padding: 0 50px 40px;
+}
+
+/* Video Card */
+.video-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.video-card:hover {
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    transform: translateY(-4px);
+}
+
+/* Thumbnail Wrapper */
+.video-thumbnail-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    background: #000;
+    overflow: hidden;
+}
+
+.video-thumbnail {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.video-card:hover .video-thumbnail {
+    transform: scale(1.05);
+}
+
+/* Play Button */
+.play-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    transition: transform 0.3s ease;
+}
+
+.video-card:hover .play-button {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Video Link Overlay */
+.video-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Video Content */
+.video-content {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Video Title */
+.video-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin: 0 0 10px;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 44px; /* Ensures consistent height for 2 lines */
+}
+
+/* Video Description */
+.video-description {
+    font-size: 13px;
+    color: #666;
+    line-height: 1.6;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-height: 63px; /* Ensures consistent height for 3 lines */
+}
+
+/* Swiper Navigation Buttons */
+.video-carousel .swiper-button-prev,
+.video-carousel .swiper-button-next {
+    width: 40px;
+    height: 40px;
+    background: #fff;
+    border-radius: 50%;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transition: all 0.3s ease;
+}
+
+.video-carousel .swiper-button-prev::after,
+.video-carousel .swiper-button-next::after {
+    font-size: 18px;
+    color: #333;
+    font-weight: bold;
+}
+
+.video-carousel .swiper-button-prev:hover,
+.video-carousel .swiper-button-next:hover {
+    background: #dc000c;
+}
+
+.video-carousel .swiper-button-prev:hover::after,
+.video-carousel .swiper-button-next:hover::after {
+    color: #fff;
+}
+
+.video-carousel .swiper-button-prev {
+    left: 0;
+}
+
+.video-carousel .swiper-button-next {
+    right: 0;
+}
+
+/* Swiper Pagination */
+.video-carousel .swiper-pagination {
+    bottom: 0;
+    position: relative;
+    margin-top: 20px;
+}
+
+.video-carousel .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: #ccc;
+    opacity: 1;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+}
+
+.video-carousel .swiper-pagination-bullet-active {
+    background: #dc000c;
+    width: 24px;
+    border-radius: 5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .minkabu-video-section {
+        padding: 30px 0;
+        margin: 0 0 30px;
+    }
+    
+    .minkabu-video-section .section-title {
+        font-size: 20px;
+        margin-bottom: 20px;
+    }
+    
+    .video-carousel {
+        padding: 0 0 30px;
+    }
+    
+    .video-carousel .swiper-button-prev,
+    .video-carousel .swiper-button-next {
+        display: none;
+    }
+    
+    .video-content {
+        padding: 15px;
+    }
+    
+    .video-title {
+        font-size: 14px;
+        min-height: 38px;
+    }
+    
+    .video-description {
+        font-size: 12px;
+        min-height: 54px;
+    }
+}
+
+/* Ensure cards have equal height */
+.swiper-slide {
+    height: auto;
+}
+
+.swiper-slide .video-card {
+    height: 100%;
+}

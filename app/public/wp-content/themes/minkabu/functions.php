@@ -384,19 +384,32 @@ function minkabu_video_carousel_shortcode($atts) {
                         if (!$video_id) continue;
                     ?>
                         <div class="swiper-slide">
-                            <div class="video-item">
-                                <div class="video-wrapper">
-                                    <iframe 
-                                        src="https://www.youtube.com/embed/<?php echo esc_attr($video_id); ?>?rel=0" 
-                                        frameborder="0" 
-                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                        allowfullscreen>
-                                    </iframe>
+                            <div class="video-card">
+                                <div class="video-thumbnail-wrapper">
+                                    <img 
+                                        src="https://img.youtube.com/vi/<?php echo esc_attr($video_id); ?>/maxresdefault.jpg" 
+                                        alt="<?php echo esc_attr($video->post_title); ?>"
+                                        class="video-thumbnail"
+                                        onerror="this.src='https://img.youtube.com/vi/<?php echo esc_attr($video_id); ?>/hqdefault.jpg'"
+                                    >
+                                    <div class="play-button">
+                                        <svg width="60" height="60" viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="30" cy="30" r="30" fill="rgba(255,255,255,0.9)"/>
+                                            <path d="M24 20L40 30L24 40V20Z" fill="#DC000C"/>
+                                        </svg>
+                                    </div>
+                                    <a href="<?php echo esc_url($youtube_url); ?>" 
+                                       class="video-link" 
+                                       target="_blank"
+                                       data-video-id="<?php echo esc_attr($video_id); ?>">
+                                    </a>
                                 </div>
-                                <h3 class="video-title"><?php echo esc_html($video->post_title); ?></h3>
-                                <?php if ($description) : ?>
-                                    <p class="video-description"><?php echo esc_html($description); ?></p>
-                                <?php endif; ?>
+                                <div class="video-content">
+                                    <h3 class="video-title"><?php echo esc_html($video->post_title); ?></h3>
+                                    <?php if ($description) : ?>
+                                        <p class="video-description"><?php echo esc_html($description); ?></p>
+                                    <?php endif; ?>
+                                </div>
                             </div>
                         </div>
                     <?php endforeach; ?>
@@ -423,6 +436,14 @@ function minkabu_enqueue_carousel_assets() {
             'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css',
             array(),
             '11.0.0'
+        );
+        
+        // Video Carousel CSS
+        wp_enqueue_style(
+            'minkabu-video-carousel-style',
+            get_template_directory_uri() . '/assets/css/video-carousel.css',
+            array(),
+            '1.0.0'
         );
         
         // Swiper JS
