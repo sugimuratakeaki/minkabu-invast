@@ -109,6 +109,14 @@ function minkabu_enqueue_scripts() {
         '1.0.0'
     );
     
+    // レイアウトCSS（メインとサイドバー）
+    wp_enqueue_style(
+        'minkabu-layout',
+        get_template_directory_uri() . '/assets/css/layout.css',
+        array(),
+        '1.0.0'
+    );
+    
     // メインJavaScript
     wp_enqueue_script(
         'minkabu-main',

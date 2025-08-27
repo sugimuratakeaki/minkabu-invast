@@ -6,13 +6,16 @@
 get_header(); ?>
 
 <?php 
-// 動画カルーセルセクション
+// 動画カルーセルセクション（全幅で表示）
 echo do_shortcode('[minkabu_video_carousel]');
 ?>
 
+<!-- メインコンテンツとサイドバーのコンテナ -->
 <?php if (!wp_is_mobile()) : ?>
-<main class="l-main">
+<div class="l-container">
+    <main class="l-main">
 <?php endif; ?>
+    
     <div class="main-content">
         <?php if (have_posts()) : ?>
             <div class="posts-grid">
@@ -73,10 +76,15 @@ echo do_shortcode('[minkabu_video_carousel]');
         minkabu_frontpage_faq_section();
         ?>
     </div>
+    
 <?php if (!wp_is_mobile()) : ?>
-</main><!-- .l-main -->
+    </main><!-- .l-main -->
+    
+    <?php get_sidebar(); ?>
+    
+</div><!-- .l-container -->
+<?php else : ?>
+    <?php get_sidebar(); ?>
 <?php endif; ?>
-
-<?php get_sidebar(); ?>
 
 <?php get_footer(); ?>

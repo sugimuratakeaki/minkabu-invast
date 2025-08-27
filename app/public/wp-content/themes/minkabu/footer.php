@@ -1,7 +1,5 @@
-<?php if (!wp_is_mobile()) : ?>
-</div><!-- .l-container -->
-<?php else : ?>
-</main><!-- #main -->
+<?php if (wp_is_mobile()) : ?>
+</main><!-- #main - Mobile Layout End -->
 <?php endif; ?>
 
 <?php if (!wp_is_mobile()) : ?>
