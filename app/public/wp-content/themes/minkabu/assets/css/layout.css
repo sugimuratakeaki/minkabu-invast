@@ -88,8 +88,10 @@
     border-bottom: none;
 }
 
-/* Thumbnail - Direct child of li */
-.wpp-list li img {
+/* Thumbnail - Handle both direct img and wrapped img */
+.wpp-list li img,
+.wpp-list li .wpp-thumbnail,
+.wpp-list li .wpp-thumbnail img {
     position: relative;
     width: 100px;
     height: 70px;
@@ -97,6 +99,10 @@
     border-radius: 4px;
     flex-shrink: 0;
     display: block;
+}
+
+.wpp-list li .wpp-thumbnail {
+    margin: 0;
 }
 
 /* Ranking number overlay */

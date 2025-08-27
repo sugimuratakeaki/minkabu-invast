@@ -20,9 +20,9 @@ if (!defined('ABSPATH')) {
         </div>
     <?php else : ?>
         <!-- WordPress Popular Posts Direct Display -->
-        <section>
+        <div class="box">
             <h2 class="h2-normal h2-icon">人気記事ランキング</h2>
-            <div class="box p5">
+            <div style="padding: 15px;">
                 <?php if (function_exists('wpp_get_mostpopular')) : ?>
                     <?php
                     // WordPress Popular Postsの表示
@@ -34,7 +34,7 @@ if (!defined('ABSPATH')) {
                         'thumbnail_height' => 70,
                         'wpp_start' => '<ul class="wpp-list">',
                         'wpp_end' => '</ul>',
-                        'post_html' => '<li>{thumb}<div class="wpp-text"><a href="{url}" class="wpp-post-title">{text_title}</a><span class="wpp-meta">{author} {date}</span></div></li>'
+                        'post_html' => '<li>{thumb}<div class="wpp-text"><a href="{url}" class="wpp-post-title">{text_title}</a><span class="wpp-meta"><span class="wpp-date">{date}</span><span class="wpp-views">{views} views</span></span></div></li>'
                     );
                     wpp_get_mostpopular($wpp_args);
                     ?>
@@ -42,7 +42,7 @@ if (!defined('ABSPATH')) {
                     <p class="p5">WordPress Popular Postsプラグインをアクティベートしてください。</p>
                 <?php endif; ?>
             </div>
-        </section>
+        </div>
     <?php endif; ?>
 </aside>
 <?php endif; ?>
