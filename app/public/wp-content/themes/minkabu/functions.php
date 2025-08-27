@@ -577,6 +577,7 @@ function minkabu_video_page_attributes() {
 }
 add_action('init', 'minkabu_video_page_attributes', 11);
 
+
 /**
  * FAQカスタム投稿タイプの登録
  */

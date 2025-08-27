@@ -30,11 +30,11 @@ if (!defined('ABSPATH')) {
                         'limit' => 10,
                         'range' => 'daily',
                         'order_by' => 'views',
-                        'thumbnail_width' => 75,
-                        'thumbnail_height' => 75,
-                        'wpp_start' => '<ul class="list-link wpp-list">',
+                        'thumbnail_width' => 100,
+                        'thumbnail_height' => 70,
+                        'wpp_start' => '<ul class="wpp-list">',
                         'wpp_end' => '</ul>',
-                        'post_html' => '<li class="list-link__item">{thumb} <a href="{url}" title="{text_title}" class="p5 flexbox flexbox_l-middle"><div class="flexbox__grow"><p class="fbd">{text_title}</p><p class="fs-s"><span class="fc-sub">{date} - {views} views</span></p></div><i class="news-arrow flexbox__shrink"></i></a></li>'
+                        'post_html' => '<li>{thumb}<div class="wpp-text"><a href="{url}" class="wpp-post-title">{text_title}</a><span class="wpp-meta">{author} {date}</span></div></li>'
                     );
                     wpp_get_mostpopular($wpp_args);
                     ?>

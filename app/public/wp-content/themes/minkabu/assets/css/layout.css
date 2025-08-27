@@ -67,60 +67,112 @@
 }
 
 /* Popular Posts List */
-.list-link {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+.wpp-list {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    counter-reset: ranking;
 }
 
-.list-link__item {
-    border-bottom: 1px solid #eee;
+.wpp-list li {
+    position: relative;
+    padding: 15px !important;
+    border-bottom: 1px solid #e5e7eb;
+    counter-increment: ranking;
+    display: flex !important;
+    align-items: flex-start;
+    gap: 12px;
 }
 
-.list-link__item:last-child {
+.wpp-list li:last-child {
     border-bottom: none;
 }
 
-.list-link__item a {
+/* Thumbnail - Direct child of li */
+.wpp-list li img {
+    position: relative;
+    width: 100px;
+    height: 70px;
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+    display: block;
+}
+
+/* Ranking number overlay */
+.wpp-list li::before {
+    content: counter(ranking);
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    width: 28px;
+    height: 28px;
+    background: #666;
+    color: #fff;
+    font-size: 14px;
+    font-weight: bold;
     display: flex;
     align-items: center;
-    padding: 10px 15px;
+    justify-content: center;
+    border-radius: 50%;
+    z-index: 10;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Top 3 special colors */
+.wpp-list li:nth-child(1)::before {
+    background: linear-gradient(135deg, #ffd700, #c9a961);
+}
+
+.wpp-list li:nth-child(2)::before {
+    background: linear-gradient(135deg, #c0c0c0, #a0a0a0);
+}
+
+.wpp-list li:nth-child(3)::before {
+    background: linear-gradient(135deg, #cd7f32, #a0522d);
+}
+
+/* Text wrapper */
+.wpp-list li .wpp-text {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+/* Post title */
+.wpp-list li .wpp-post-title {
+    font-size: 13px;
+    font-weight: bold;
+    line-height: 1.5;
+    color: #1a1a1a;
     text-decoration: none;
-    color: #333;
-    transition: background-color 0.2s ease;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.list-link__item a:hover {
-    background-color: #f8f9fa;
+.wpp-list li .wpp-post-title:hover {
+    color: #007cba;
 }
 
-.list-link__item img {
-    width: 75px;
-    height: 75px;
-    object-fit: cover;
-    margin-right: 15px;
-    border-radius: 4px;
+/* Meta info */
+.wpp-list li .wpp-meta {
+    font-size: 11px;
+    color: #999;
+    display: flex;
+    gap: 8px;
 }
 
-/* News Arrow */
-.news-arrow {
-    position: relative;
-    width: 20px;
-    height: 20px;
-    margin-left: auto;
-}
-
-.news-arrow::after {
-    content: '';
-    position: absolute;
-    right: 0;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 6px;
-    height: 6px;
-    border-top: 2px solid #999;
-    border-right: 2px solid #999;
-    transform: translateY(-50%) rotate(45deg);
+/* Clean up any default widget styles */
+.widget_popular_posts ul,
+.widget_wordpress-popular-posts ul {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
 }
 
 /* Mobile Styles */
