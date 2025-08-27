@@ -117,18 +117,10 @@ function minkabu_enqueue_scripts() {
         '1.0.0'
     );
     
-    // カードグリッドシステムCSS
+    // 全セクション統合CSS（カードグリッド、口座開設、FAQ）
     wp_enqueue_style(
-        'minkabu-card-grid',
-        get_template_directory_uri() . '/assets/css/card-grid.css',
-        array(),
-        '1.0.0'
-    );
-    
-    // 口座開設セクションCSS
-    wp_enqueue_style(
-        'minkabu-account-opening',
-        get_template_directory_uri() . '/assets/css/account-opening.css',
+        'minkabu-sections',
+        get_template_directory_uri() . '/assets/css/sections.css',
         array(),
         '1.0.0'
     );
@@ -824,21 +816,19 @@ function minkabu_render_faq_section($faqs, $title = 'よくある質問', $class
     ob_start();
     ?>
     <div class="<?php echo esc_attr($class); ?>">
-        <h2 class="faq-section-title"><?php echo esc_html($title); ?></h2>
+        <h2 class="section-title"><?php echo esc_html($title); ?></h2>
         <div class="faq-list">
             <?php foreach ($faqs as $faq) : ?>
                 <div class="faq-item" data-faq-id="<?php echo $faq->ID; ?>">
                     <div class="faq-question">
-                        <span class="faq-q">Q</span>
-                        <h3 class="faq-title"><?php echo esc_html($faq->post_title); ?></h3>
-                        <span class="faq-toggle">
-                            <span class="faq-toggle-icon"></span>
-                        </span>
+                        <span class="faq-question-text"><?php echo esc_html($faq->post_title); ?></span>
+                        <span class="faq-toggle"></span>
                     </div>
                     <div class="faq-answer">
-                        <span class="faq-a">A</span>
-                        <div class="faq-content">
-                            <?php echo apply_filters('the_content', $faq->post_content); ?>
+                        <div class="faq-answer-content">
+                            <div class="faq-answer-text">
+                                <?php echo apply_filters('the_content', $faq->post_content); ?>
+                            </div>
                         </div>
                     </div>
                 </div>
