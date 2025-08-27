@@ -11,7 +11,7 @@ echo do_shortcode('[minkabu_video_carousel]');
 ?>
 
 <?php if (!wp_is_mobile()) : ?>
-<div class="l-main">
+<main class="l-main">
 <?php endif; ?>
     <div class="main-content">
         <?php if (have_posts()) : ?>
@@ -74,7 +74,7 @@ echo do_shortcode('[minkabu_video_carousel]');
         ?>
     </div>
 <?php if (!wp_is_mobile()) : ?>
-</div><!-- .l-main -->
+</main><!-- .l-main -->
 <?php endif; ?>
 
 <?php get_sidebar(); ?>

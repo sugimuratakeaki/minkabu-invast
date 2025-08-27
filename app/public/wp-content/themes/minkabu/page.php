@@ -5,7 +5,7 @@
 
 get_header(); ?>
 
-<div class="main-content">
+<main class="main-content">
     <div class="container">
         <?php while (have_posts()) : the_post(); ?>
             <article id="page-<?php the_ID(); ?>" <?php post_class('page-content'); ?>>
@@ -54,6 +54,6 @@ get_header(); ?>
             ?>
         <?php endwhile; ?>
     </div>
-</div>
+</main>
 
 <?php get_footer(); ?>

@@ -5,7 +5,7 @@
 
 get_header(); ?>
 
-<div class="main-content">
+<main class="main-content">
     <div class="container">
         <div class="single-layout">
             <main class="single-main">
@@ -120,6 +120,6 @@ get_header(); ?>
             </aside>
         </div>
     </div>
-</div>
+</main>
 
 <?php get_footer(); ?>

@@ -6,7 +6,7 @@
 get_header(); ?>
 
 <?php if (!wp_is_mobile()) : ?>
-<div class="l-main">
+<main class="l-main">
 <?php endif; ?>
     <div class="main-content">
         <header class="archive-header">
@@ -69,7 +69,7 @@ get_header(); ?>
         <?php endif; ?>
     </div>
 <?php if (!wp_is_mobile()) : ?>
-</div><!-- .l-main -->
+</main><!-- .l-main -->
 <?php endif; ?>
 
 <?php get_sidebar(); ?>
