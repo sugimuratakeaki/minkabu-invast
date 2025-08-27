@@ -321,50 +321,32 @@ input, textarea, select {
 ============================================= */
 
 .ribbon_box {
-    width: 1080px;
+    width: 100%;
     position: relative;
-    margin: 0 auto;
+    background: linear-gradient(90deg, #ff416c 0%, #ff4b2b 100%);
+    padding: 10px 0;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.ribbon_box a {
+    text-decoration: none;
+    display: inline-block;
 }
 
 .md_ribbon {
     display: inline-block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    padding: 0.25em 2em 0.25em 3em;
-    background: linear-gradient(-135deg, #c3a07f, #cab340);
+    padding: 0 20px;
     color: #fff;
-    font-size: 12px;
+    font-weight: bold;
+    font-size: 14px;
+    line-height: 1.6;
+    letter-spacing: 0.5px;
     transition: opacity 0.3s ease;
 }
 
-.md_ribbon::before,
-.md_ribbon::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 0;
-    z-index: 1;
-}
-
-.md_ribbon::before {
-    top: 0;
-    left: 0;
-    border: 2em solid transparent;
-    border-left: 1.5em solid #fff;
-    border-top-width: 0;
-}
-
-.md_ribbon::after {
-    top: 0;
-    right: 0;
-    border: 1em solid transparent;
-    border-right: 0.5em solid #fff;
-    border-left-width: 0;
-}
-
 .md_ribbon:hover {
-    opacity: 0.75;
+    opacity: 0.85;
     text-decoration: none;
 }
 

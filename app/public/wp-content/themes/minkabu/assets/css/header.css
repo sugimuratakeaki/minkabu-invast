@@ -1,0 +1,446 @@
+/* =============================================
+   HEADER STYLES
+============================================= */
+
+/* =============================================
+   PC HEADER
+============================================= */
+.fc-red { color: #dc000c !important; }
+
+/* 専用クラス（代替案） */
+.l-header__media__li .link-red {
+    color: #dc000c;
+    font-weight: bold;
+}
+
+.l-header {
+    position: relative;
+    width: 100%;
+    z-index: 120;
+    background: #fff;
+}
+
+.l-header__first {
+    width: 1080px;
+    margin: 0 auto;
+    padding: 15px 0 ;
+    min-height: 70px;
+}
+
+.l-header__logo {
+    min-width: 100px;
+    padding: 10px 32px 0 0;
+}
+
+.l-header__logo a {
+    display: inline-block;
+    width: 100%;
+}
+
+.l-header__media {
+    position: relative;
+}
+
+.l-header__media__li {
+    position: relative;
+    padding: 0 10px;
+    font-size: medium;
+}
+
+.l-header__media__li a {
+    color: #334155;
+    text-decoration: none;
+}
+
+.l-header__media__li a:hover,
+.l-header__media__li__hover:hover {
+    opacity: 0.75;
+}
+
+.l-header__media__li__hover {
+    display: block;
+    padding: 0;
+    cursor: pointer;
+}
+
+/* Dropdown arrow */
+.l-header__media__li__arrow-s::after {
+    content: '';
+    display: inline-block;
+    width: 0;
+    height: 0;
+    margin-left: 6px;
+    border-style: solid;
+    border-width: 5px 5px 0;
+    border-color: #334155 transparent transparent;
+}
+
+/* Dropdown menu */
+.l-header__media__second {
+    position: absolute;
+    top: calc(100% + 15px);
+    left: -180px;
+    width: 420px;
+    padding: 20px 30px;
+    background: #fff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 999;
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+}
+
+.l-header__media__second::before {
+    content: '';
+    position: absolute;
+    top: -8px;
+    left: 200px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #e5e7eb;
+}
+
+.l-header__media__second::after {
+    content: '';
+    position: absolute;
+    top: -7px;
+    left: 200px;
+    width: 0;
+    height: 0;
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #fff;
+}
+
+.l-header__media__second ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+}
+
+.l-header__media__second__li {
+    margin-bottom: 8px;
+}
+
+.l-header__media__second__li.text-link {
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.l-header__media__second__li a {
+    color: #334155;
+    transition: color 0.2s ease;
+}
+
+.l-header__media__second__li a:hover {
+    color: #dc000c;
+}
+
+.l-header__nav__second__link {
+    display: block;
+    padding: 8px 12px;
+    color: #334155;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.l-header__nav__second__link:hover {
+    background-color: #f3f4f6;
+    color: #dc000c;
+}
+
+/* Dropdown hover states */
+.l-header__media__li:hover > .l-header__media__second {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Ribbon box styles are defined in minkabu-original.css */
+
+/* =============================================
+   MOBILE HEADER
+============================================= */
+.sp_header {
+    background: #fff;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.sp_header .header__inner {
+    padding: 12px 16px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sp_header .l-header__logo {
+    margin: 0 auto;
+    padding: 0;
+}
+
+.sp_header .l-header__logo img {
+    width: 110px;
+    height: 30px;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+    display: none;
+    width: 30px;
+    height: 30px;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+    z-index: 1001;
+}
+
+.hamburger-menu span {
+    display: block;
+    width: 25px;
+    height: 2px;
+    background-color: #333;
+    margin: 5px 0;
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu.is-active span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.hamburger-menu.is-active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger-menu.is-active span:nth-child(3) {
+    transform: rotate(-45deg) translate(5px, -5px);
+}
+
+/* =============================================
+   SLIDE MENU (Mobile Navigation)
+============================================= */
+.slideout-menu {
+    position: fixed;
+    top: 0;
+    width: 320px;
+    height: 100%;
+    background: #1a1a1a;
+    z-index: 999;
+    overflow-y: auto;
+    transition: transform 0.3s ease;
+}
+
+.slideout-menu-right {
+    right: -320px;
+}
+
+.slideout-menu-right.is-open {
+    transform: translateX(-320px);
+}
+
+.slide-close-btn {
+    padding: 15px;
+    text-align: right;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.slide-close-btn img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+/* Slide menu media icons */
+.slide__media_icon_box {
+    padding: 20px 15px;
+    background: rgba(255,255,255,0.05);
+}
+
+.icon_box__col4 {
+    width: 25%;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.icon_box__col4 img {
+    width: 25px;
+    height: 25px;
+    margin: 0 auto;
+}
+
+.icon_box__text {
+    font-size: 11px;
+    margin-top: 5px;
+    color: #fff;
+}
+
+/* Slide menu user block */
+.user_block {
+    padding: 15px;
+    background: rgba(255,255,255,0.1);
+    margin: 15px;
+    border-radius: 8px;
+}
+
+.sign_up_login {
+    text-align: center;
+}
+
+.sign_up_login a {
+    color: #fff;
+    margin: 0 10px;
+}
+
+.sign_up_login span {
+    color: rgba(255,255,255,0.5);
+}
+
+/* Slide menu lists */
+.slide-list {
+    margin: 15px 0;
+}
+
+.slide-list dt {
+    padding: 10px 15px;
+    background: rgba(255,255,255,0.1);
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.slide-list dd {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.slide-list dd a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 15px;
+    color: #fff;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.slide-list dd a:hover {
+    background: rgba(255,255,255,0.05);
+}
+
+/* Accordion menu */
+.menu input[type="checkbox"] {
+    display: none;
+}
+
+.menu label {
+    cursor: pointer;
+}
+
+.menu #links1 {
+    display: none;
+    background: rgba(0,0,0,0.3);
+}
+
+.menu #type1:checked ~ #links1 {
+    display: block;
+}
+
+.menu .i-arrow_down {
+    transition: transform 0.3s ease;
+}
+
+.menu #type1:checked ~ label .i-arrow_down {
+    transform: rotate(180deg);
+}
+
+/* Slide menu caution */
+.slide-caution {
+    padding: 15px;
+    margin-top: 30px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.slide-caution__item {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 5px;
+    font-size: 12px;
+}
+
+/* Overlay */
+.slide-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 998;
+}
+
+.slide-overlay.is-visible {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* =============================================
+   RESPONSIVE
+============================================= */
+@media (max-width: 768px) {
+    .hamburger-menu {
+        display: block;
+    }
+    
+    .l-header {
+        display: none;
+    }
+    
+    body {
+        padding-top: 54px; /* Height of mobile header */
+    }
+}
+
+@media (min-width: 769px) {
+    .sp_header {
+        display: none !important;
+    }
+    
+    #slide-menu {
+        display: none !important;
+    }
+    
+    .slide-overlay {
+        display: none !important;
+    }
+}
+
+/* =============================================
+   ANIMATIONS
+============================================= */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

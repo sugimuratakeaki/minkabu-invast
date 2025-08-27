@@ -3,6 +3,8 @@
 <head>
     <meta charset="<?php bloginfo('charset'); ?>">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="<?php echo get_template_directory_uri(); ?>/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="<?php echo get_template_directory_uri(); ?>/assets/images/favicon.ico" type="image/x-icon">
     <?php wp_head(); ?>
 </head>
 <body <?php body_class(); ?>>
@@ -29,22 +31,17 @@
 <!-- PC Header -->
 <header>
     <div class="l-header">
-        <div class="ribbon_box">
-            <a href="https://id.minkabu.jp/premium_lp.html">
-                <span class="md_ribbon">みんかぶプレミアムのご紹介 ›</span>
-            </a>
-        </div>
         <div class="flexbox l-header__first flexbox_l-middle tlft">
             <div class="m-0">
                 <a class="l-header__logo" href="https://minkabu.jp/" title="みんかぶ">
-                    <img alt="みんかぶ" width="146" height="40" class="d-block" src="https://assets.minkabu.jp/images/logo/v4/logo_minkabu.svg">
+                    <img alt="みんかぶ" width="146" height="40" class="mt-1" src="https://assets.minkabu.jp/images/logo/v4/logo_minkabu.svg">
                 </a>
             </div>
             <div class="l-header__media">
                 <ul class="flexbox">
                     <li class="l-header__media__li"><a href="https://minkabu.jp/">株式</a></li>
                     <li class="l-header__media__li"><a href="https://us.minkabu.jp/">米国株</a></li>
-                    <li class="l-header__media__li"><a class="fbd fc-red" href="https://fx.minkabu.jp/">FX</a></li>
+                    <li class="l-header__media__li"><a class="link-red" href="https://fx.minkabu.jp/">FX</a></li>
                     <li class="l-header__media__li"><a href="https://cc.minkabu.jp/">仮想通貨</a></li>
                     <li class="l-header__media__li"><a href="https://itf.minkabu.jp/">投信</a></li>
                     <li class="l-header__media__li"><a href="https://fu.minkabu.jp">先物</a></li>

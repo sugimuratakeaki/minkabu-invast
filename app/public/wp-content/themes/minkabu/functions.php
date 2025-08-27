@@ -77,7 +77,7 @@ add_action('widgets_init', 'minkabu_widgets_init');
  * スタイルシートとスクリプトの読み込み
  */
 function minkabu_enqueue_scripts() {
-    // メインスタイルシート
+    // メインスタイルシート（テーマ情報のみ）
     wp_enqueue_style(
         'minkabu-style',
         get_stylesheet_uri(),
@@ -85,19 +85,27 @@ function minkabu_enqueue_scripts() {
         '1.0.0'
     );
     
-    // オリジナルみんかぶCSS（全クラス含む）
+    // ヘッダーCSS
     wp_enqueue_style(
-        'minkabu-original',
-        get_template_directory_uri() . '/assets/css/minkabu-original.css',
-        array('minkabu-style'),
+        'minkabu-header',
+        get_template_directory_uri() . '/assets/css/header.css',
+        array(),
         '1.0.0'
     );
     
-    // 追加CSS
+    // フッターCSS
     wp_enqueue_style(
-        'minkabu-main',
-        get_template_directory_uri() . '/assets/css/main.css',
-        array('minkabu-style', 'minkabu-original'),
+        'minkabu-footer',
+        get_template_directory_uri() . '/assets/css/footer.css',
+        array(),
+        '1.0.0'
+    );
+    
+    // メインコンテンツCSS
+    wp_enqueue_style(
+        'minkabu-main-content',
+        get_template_directory_uri() . '/assets/css/main-content.css',
+        array(),
         '1.0.0'
     );
     

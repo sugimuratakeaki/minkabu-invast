@@ -14,8 +14,8 @@
             <li>インヴァスト証券紹介</li>
         </ul>
     </nav>
-    <div class="footer__inner pt5">
-        <p class="footer__text fs-xs mb8" data-accordion-role="reader">
+    <div class="footer__inner">
+        <p class="footer__text fs-xs" data-accordion-role="reader">
             【ご注意】『みんかぶ』における「買い」「売り」の情報はあくまでも投稿者の個人的見解によるものであり、情報の真偽、株式の評価に関する正確性・信頼性等については一切保証されておりません。 
             また、東京証券取引所、名古屋証券取引所、China Investment Information Services、NASDAQ OMX、CME Group Inc.、東京商品取引所、堂島取引所、 S&amp;P Global、S&amp;P Dow Jones Indices、Hang Seng Indexes、bitFlyer、ＮＴＴデータエービック、ICE Data Services等から情報の提供を受けています。 
             日経平均株価の著作権は日本経済新聞社に帰属します。 『みんかぶ』に掲載されている情報は、投資判断の参考として投資一般に関する情報提供を目的とするものであり、投資の勧誘を目的とするものではありません。 
@@ -28,7 +28,7 @@
             個別の投稿が金融商品取引法等に違反しているとご判断される場合には「<a target="_blank" rel="nofollow" href="https://www.fsa.go.jp/sesc/watch/"><span class="fc-white60 fbd">証券取引等監視委員会への情報提供</span></a>」から、同委員会へ情報の提供を行ってください。 
             また、『みんかぶ』において公開されている情報につきましては、営業に利用することはもちろん、第三者へ提供する目的で情報を転用、複製、販売、加工、再利用及び再配信することを固く禁じます。
         </p>
-        <ul class="footer__nav text-sm flexbox pb5 mb5">
+        <ul class="footer__nav text-sm flexbox">
             <li class="mr8"><a title="みんかぶ（FX/為替）について" href="/about">みんかぶ（FX/為替）について</a></li>
             <li class="mr8"><a href="https://minkabu.co.jp/" target="_blank">運営会社</a></li>
             <li class="mr8"><a href="https://info.minkabu.jp/terms/" target="_blank">利用規約</a></li>
