@@ -66,4 +66,9 @@ echo do_shortcode('[minkabu_video_carousel]');
     <?php get_sidebar(); ?>
 <?php endif; ?>
 
+<?php 
+// 口座開設セクション（全幅で表示）
+echo do_shortcode('[minkabu_account_opening]');
+?>
+
 <?php get_footer(); ?>

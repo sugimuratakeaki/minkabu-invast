@@ -125,6 +125,14 @@ function minkabu_enqueue_scripts() {
         '1.0.0'
     );
     
+    // 口座開設セクションCSS
+    wp_enqueue_style(
+        'minkabu-account-opening',
+        get_template_directory_uri() . '/assets/css/account-opening.css',
+        array(),
+        '1.0.0'
+    );
+    
     // メインJavaScript
     wp_enqueue_script(
         'minkabu-main',
@@ -1214,6 +1222,56 @@ function minkabu_enqueue_faq_assets() {
 add_action('wp_enqueue_scripts', 'minkabu_enqueue_faq_assets');
 
 /**
+ * 口座開設セクションのショートコード
+ */
+function minkabu_account_opening_shortcode($atts) {
+    $atts = shortcode_atts(array(
+        'title' => '口座開設も <span class="highlight">スマホで簡単4ステップ！</span>',
+        'cta_text' => '口座開設はこちら',
+        'cta_url' => '/account-opening',
+        'show_details' => 'true',
+    ), $atts);
+    
+    ob_start();
+    
+    // カスタマイズ可能なパラメータを変数として設定
+    $GLOBALS['minkabu_account_opening_params'] = $atts;
+    
+    // テンプレートパートを読み込み
+    get_template_part('template-parts/account-opening');
+    
+    // グローバル変数をクリーンアップ
+    unset($GLOBALS['minkabu_account_opening_params']);
+    
+    return ob_get_clean();
+}
+add_shortcode('minkabu_account_opening', 'minkabu_account_opening_shortcode');
+
+/**
+ * 口座開設セクションを表示するヘルパー関数
+ * テンプレート内で直接呼び出し可能
+ */
+function minkabu_display_account_opening($args = array()) {
+    $defaults = array(
+        'title' => '口座開設も <span class="highlight">スマホで簡単4ステップ！</span>',
+        'cta_text' => '口座開設はこちら',
+        'cta_url' => '/account-opening',
+        'show_details' => true,
+    );
+    
+    $args = wp_parse_args($args, $defaults);
+    
+    // パラメータをグローバル変数にセット
+    $GLOBALS['minkabu_account_opening_params'] = $args;
+    
+    // テンプレートパートを読み込み
+    get_template_part('template-parts/account-opening');
+    
+    // グローバル変数をクリーンアップ
+    unset($GLOBALS['minkabu_account_opening_params']);
+}
+
+/**
  * FAQ管理画面での通知とサンプルデータ登録
  */
 function minkabu_faq_admin_notices() {
@@ -1246,6 +1304,99 @@ function minkabu_faq_admin_notices() {
     }
 }
 add_action('admin_notices', 'minkabu_faq_admin_notices');
+
+/**
+ * 管理画面にテーマ設定メニューを追加
+ */
+function minkabu_add_admin_menu() {
+    add_menu_page(
+        'Minkabuテーマ設定',
+        'Minkabuテーマ',
+        'manage_options',
+        'minkabu-theme-settings',
+        'minkabu_theme_settings_page',
+        'dashicons-layout',
+        61
+    );
+    
+    add_submenu_page(
+        'minkabu-theme-settings',
+        'ショートコード一覧',
+        'ショートコード',
+        'manage_options',
+        'minkabu-shortcodes',
+        'minkabu_shortcodes_page'
+    );
+}
+add_action('admin_menu', 'minkabu_add_admin_menu');
+
+/**
+ * テーマ設定ページ
+ */
+function minkabu_theme_settings_page() {
+    ?>
+    <div class="wrap">
+        <h1>Minkabuテーマ設定</h1>
+        <div class="card">
+            <h2>テーマの機能</h2>
+            <p>このテーマには以下の機能が含まれています：</p>
+            <ul style="list-style: disc; margin-left: 20px;">
+                <li><strong>動画カルーセル</strong>: YouTube動画を管理・表示</li>
+                <li><strong>FAQ管理</strong>: よくある質問を管理</li>
+                <li><strong>口座開設セクション</strong>: 口座開設の流れを表示</li>
+                <li><strong>カードグリッド</strong>: 記事をカード形式で表示</li>
+            </ul>
+        </div>
+    </div>
+    <?php
+}
+
+/**
+ * ショートコード一覧ページ
+ */
+function minkabu_shortcodes_page() {
+    ?>
+    <div class="wrap">
+        <h1>利用可能なショートコード</h1>
+        
+        <div class="card">
+            <h2>口座開設セクション</h2>
+            <p>口座開設の流れを4ステップで表示します。</p>
+            <h3>基本的な使用方法:</h3>
+            <code style="display: block; padding: 10px; background: #f0f0f0; margin: 10px 0;">[minkabu_account_opening]</code>
+            
+            <h3>カスタマイズ例:</h3>
+            <code style="display: block; padding: 10px; background: #f0f0f0; margin: 10px 0;">[minkabu_account_opening title="最短5分で口座開設！" cta_text="今すぐ開設" cta_url="/register" show_details="false"]</code>
+            
+            <h3>パラメータ:</h3>
+            <ul style="list-style: disc; margin-left: 20px;">
+                <li><strong>title</strong>: セクションのタイトル（HTMLタグ使用可）</li>
+                <li><strong>cta_text</strong>: ボタンのテキスト</li>
+                <li><strong>cta_url</strong>: ボタンのリンク先URL</li>
+                <li><strong>show_details</strong>: 詳細手順の表示/非表示（true/false）</li>
+            </ul>
+        </div>
+        
+        <div class="card">
+            <h2>動画カルーセル</h2>
+            <code style="display: block; padding: 10px; background: #f0f0f0; margin: 10px 0;">[minkabu_video_carousel]</code>
+            <p>登録された動画をカルーセル形式で表示します。</p>
+        </div>
+        
+        <div class="card">
+            <h2>FAQ表示</h2>
+            <code style="display: block; padding: 10px; background: #f0f0f0; margin: 10px 0;">[minkabu_faq]</code>
+            <h3>パラメータ:</h3>
+            <ul style="list-style: disc; margin-left: 20px;">
+                <li><strong>category</strong>: 表示するFAQカテゴリー（スラッグ）</li>
+                <li><strong>count</strong>: 表示件数（-1で全件）</li>
+                <li><strong>show_on_top</strong>: トップページ表示のみ（true/false）</li>
+                <li><strong>title</strong>: セクションタイトル</li>
+            </ul>
+        </div>
+    </div>
+    <?php
+}
 
 /**
  * サンプルFAQのインポート処理
