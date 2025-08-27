@@ -22,7 +22,7 @@ if (!defined('ABSPATH')) {
         <!-- WordPress Popular Posts Direct Display -->
         <div class="box">
             <h2 class="h2-normal h2-icon">人気記事ランキング</h2>
-            <div style="padding: 15px;">
+            <div style="">
                 <?php if (function_exists('wpp_get_mostpopular')) : ?>
                     <?php
                     // WordPress Popular Postsの表示
