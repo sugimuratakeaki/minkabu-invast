@@ -124,11 +124,11 @@
     margin: 0 0 10px;
     line-height: 1.4;
     display: -webkit-box;
-    -webkit-line-clamp: 2;
+    -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    min-height: 44px; /* Ensures consistent height for 2 lines */
+    min-height: 67px; /* Ensures consistent height for 3 lines (16px * 1.4 * 3) */
 }
 
 /* Video Description */
@@ -230,7 +230,7 @@
     
     .video-title {
         font-size: 14px;
-        min-height: 38px;
+        min-height: 59px; /* 3 lines on mobile (14px * 1.4 * 3) */
     }
     
     .video-description {
