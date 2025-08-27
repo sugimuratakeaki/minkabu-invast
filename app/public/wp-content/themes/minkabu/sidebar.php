@@ -34,7 +34,7 @@ if (!defined('ABSPATH')) {
                         'thumbnail_height' => 70,
                         'wpp_start' => '<ul class="wpp-list">',
                         'wpp_end' => '</ul>',
-                        'post_html' => '<li>{thumb}<div class="wpp-text"><a href="{url}" class="wpp-post-title">{text_title}</a><span class="wpp-meta"><span class="wpp-date">{date}</span><span class="wpp-views">{views} views</span></span></div></li>'
+                        'post_html' => '<li>{thumb}<div class="wpp-text"><a href="{url}" class="wpp-post-title">{text_title}</a><span class="wpp-meta"><span class="wpp-date">{date}</span></span></div></li>'
                     );
                     wpp_get_mostpopular($wpp_args);
                     ?>
