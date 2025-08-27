@@ -44,5 +44,47 @@ if (!defined('ABSPATH')) {
             </div>
         </div>
     <?php endif; ?>
+    
+    <!-- Recent Posts Section -->
+    <div class="box">
+        <h2 class="h2-normal h2-icon">新着記事</h2>
+        <div style="">
+            <?php
+            // 新着記事の取得
+            $recent_posts = new WP_Query(array(
+                'posts_per_page' => 10,
+                'post_status' => 'publish',
+                'orderby' => 'date',
+                'order' => 'DESC'
+            ));
+            
+            if ($recent_posts->have_posts()) : ?>
+                <ul class="recent-list">
+                    <?php while ($recent_posts->have_posts()) : $recent_posts->the_post(); ?>
+                        <li>
+                            <?php if (has_post_thumbnail()) : ?>
+                                <a href="<?php the_permalink(); ?>">
+                                    <?php the_post_thumbnail('thumbnail', array('width' => 100, 'height' => 70)); ?>
+                                </a>
+                            <?php else : ?>
+                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/no-image.jpg" alt="No Image" width="100" height="70">
+                            <?php endif; ?>
+                            <div class="recent-text">
+                                <a href="<?php the_permalink(); ?>" class="recent-post-title">
+                                    <?php the_title(); ?>
+                                </a>
+                                <span class="recent-meta">
+                                    <span class="recent-date"><?php echo get_the_date('Y.m.d'); ?></span>
+                                </span>
+                            </div>
+                        </li>
+                    <?php endwhile; ?>
+                </ul>
+            <?php else : ?>
+                <p class="p5">記事がありません。</p>
+            <?php endif; 
+            wp_reset_postdata(); ?>
+        </div>
+    </div>
 </aside>
 <?php endif; ?>
