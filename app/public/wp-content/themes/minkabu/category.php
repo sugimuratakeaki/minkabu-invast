@@ -21,41 +21,9 @@ get_header(); ?>
         </header>
 
         <?php if (have_posts()) : ?>
-            <div class="posts-grid">
+            <div class="card-grid">
                 <?php while (have_posts()) : the_post(); ?>
-                    <article id="post-<?php the_ID(); ?>" <?php post_class('post-item'); ?>>
-                        <?php if (has_post_thumbnail()) : ?>
-                            <div class="post-thumbnail">
-                                <a href="<?php the_permalink(); ?>">
-                                    <?php the_post_thumbnail('medium'); ?>
-                                </a>
-                            </div>
-                        <?php endif; ?>
-                        
-                        <div class="post-content">
-                            <header class="post-header">
-                                <h2 class="post-title">
-                                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                </h2>
-                                <div class="post-meta">
-                                    <time class="post-date" datetime="<?php echo get_the_date('c'); ?>">
-                                        <?php echo get_the_date(); ?>
-                                    </time>
-                                </div>
-                            </header>
-                            
-                            <div class="post-excerpt">
-                                <?php the_excerpt(); ?>
-                            </div>
-                            
-                            <footer class="post-footer">
-                                <a href="<?php the_permalink(); ?>" class="read-more">
-                                    続きを読む
-                                    <span class="arrow">&rarr;</span>
-                                </a>
-                            </footer>
-                        </div>
-                    </article>
+                    <?php get_template_part('template-parts/content', 'card'); ?>
                 <?php endwhile; ?>
             </div>
             

@@ -117,6 +117,14 @@ function minkabu_enqueue_scripts() {
         '1.0.0'
     );
     
+    // カードグリッドシステムCSS
+    wp_enqueue_style(
+        'minkabu-card-grid',
+        get_template_directory_uri() . '/assets/css/card-grid.css',
+        array(),
+        '1.0.0'
+    );
+    
     // メインJavaScript
     wp_enqueue_script(
         'minkabu-main',
@@ -597,6 +605,13 @@ function minkabu_video_page_attributes() {
     add_post_type_support('minkabu_video', 'page-attributes');
 }
 add_action('init', 'minkabu_video_page_attributes', 11);
+
+/**
+ * カードグリッド機能の読み込み
+ */
+require get_template_directory() . '/inc/card-grid-shortcodes.php';
+require get_template_directory() . '/inc/customizer-card-grid.php';
+require get_template_directory() . '/inc/card-grid-metabox.php';
 
 
 /**

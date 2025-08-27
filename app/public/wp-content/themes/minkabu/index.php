@@ -18,47 +18,26 @@ echo do_shortcode('[minkabu_video_carousel]');
     
     <div class="main-content">
         <?php if (have_posts()) : ?>
-            <div class="posts-grid">
-                <?php while (have_posts()) : the_post(); ?>
-                    <article id="post-<?php the_ID(); ?>" <?php post_class('post-item'); ?>>
-                        <?php if (has_post_thumbnail()) : ?>
-                            <div class="post-thumbnail">
-                                <a href="<?php the_permalink(); ?>">
-                                    <?php the_post_thumbnail('medium'); ?>
-                                </a>
-                            </div>
-                        <?php endif; ?>
-                        
-                        <div class="post-content">
-                            <header class="post-header">
-                                <h2 class="post-title">
-                                    <a href="<?php the_permalink(); ?>"><?php the_title(); ?></a>
-                                </h2>
-                                <div class="post-meta">
-                                    <time class="post-date" datetime="<?php echo get_the_date('c'); ?>">
-                                        <?php echo get_the_date(); ?>
-                                    </time>
-                                    <?php if (has_category()) : ?>
-                                        <div class="post-categories">
-                                            <?php the_category(', '); ?>
-                                        </div>
-                                    <?php endif; ?>
-                                </div>
-                            </header>
-                            
-                            <div class="post-excerpt">
-                                <?php the_excerpt(); ?>
-                            </div>
-                            
-                            <footer class="post-footer">
-                                <a href="<?php the_permalink(); ?>" class="read-more">
-                                    続きを読む
-                                    <span class="arrow">&rarr;</span>
-                                </a>
-                            </footer>
-                        </div>
-                    </article>
+            <!-- Section Title -->
+            <div class="section-header">
+                <h2 class="section-title">資産形成のはじめ方</h2>
+            </div>
+            
+            <div class="card-grid">
+                <?php 
+                $post_count = 0;
+                while (have_posts() && $post_count < 3) : the_post(); 
+                    $post_count++;
+                ?>
+                    <?php get_template_part('template-parts/content', 'card'); ?>
                 <?php endwhile; ?>
+            </div>
+            
+            <!-- View More Button -->
+            <div class="section-footer">
+                <a href="<?php echo esc_url(home_url('/category/asset-formation/')); ?>" class="btn-outline">
+                    資産形成のはじめ方
+                </a>
             </div>
             
             <?php minkabu_pagination(); ?>
