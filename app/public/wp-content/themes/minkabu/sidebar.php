@@ -67,7 +67,9 @@ if (!defined('ABSPATH')) {
                                     <?php the_post_thumbnail('thumbnail', array('width' => 100, 'height' => 70)); ?>
                                 </a>
                             <?php else : ?>
-                                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/no-image.jpg" alt="No Image" width="100" height="70">
+                                <a href="<?php the_permalink(); ?>">
+                                    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='70' viewBox='0 0 100 70'%3E%3Crect width='100' height='70' fill='%23e5e7eb'/%3E%3Ctext x='50' y='35' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='11' fill='%23999'%3ENo%3C/text%3E%3Ctext x='50' y='45' text-anchor='middle' dominant-baseline='middle' font-family='sans-serif' font-size='11' fill='%23999'%3EThumbnail%3C/text%3E%3C/svg%3E" alt="No Thumbnail" width="100" height="70">
+                                </a>
                             <?php endif; ?>
                             <div class="recent-text">
                                 <a href="<?php the_permalink(); ?>" class="recent-post-title">
