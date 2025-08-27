@@ -45,6 +45,9 @@ if (!defined('ABSPATH')) {
         </div>
     <?php endif; ?>
     
+    <!-- Currency Pair Ranking Section -->
+    <?php minkabu_display_currency_ranking(); ?>
+    
     <!-- Recent Posts Section -->
     <div class="box">
         <h2 class="h2-normal h2-icon">新着記事</h2>

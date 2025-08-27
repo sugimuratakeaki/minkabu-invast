@@ -1484,3 +1484,108 @@ function minkabu_import_sample_faqs() {
     exit;
 }
 add_action('admin_init', 'minkabu_import_sample_faqs');
+
+/**
+ * 通貨ペアランキング機能
+ */
+
+// カスタマイザーに通貨ペアランキング設定を追加
+function minkabu_customize_currency_ranking($wp_customize) {
+    // セクション追加
+    $wp_customize->add_section('minkabu_currency_ranking', array(
+        'title' => '通貨ペアランキング設定',
+        'priority' => 130,
+        'description' => '自動売買の人気通貨ペアランキングを管理します。',
+    ));
+    
+    // ランキング表示の有効/無効
+    $wp_customize->add_setting('minkabu_currency_ranking_enabled', array(
+        'default' => true,
+        'sanitize_callback' => 'wp_validate_boolean',
+    ));
+    
+    $wp_customize->add_control('minkabu_currency_ranking_enabled', array(
+        'label' => 'ランキングを表示',
+        'section' => 'minkabu_currency_ranking',
+        'type' => 'checkbox',
+    ));
+    
+    // ランキングタイトル
+    $wp_customize->add_setting('minkabu_currency_ranking_title', array(
+        'default' => '人気通貨ペアランキング',
+        'sanitize_callback' => 'sanitize_text_field',
+    ));
+    
+    $wp_customize->add_control('minkabu_currency_ranking_title', array(
+        'label' => 'ランキングタイトル',
+        'section' => 'minkabu_currency_ranking',
+        'type' => 'text',
+    ));
+    
+    // 通貨ペア設定（最大10個）
+    for ($i = 1; $i <= 10; $i++) {
+        $default_value = '';
+        if ($i == 1) $default_value = '豪ドル/NZドル（AUD/NZD）';
+        if ($i == 2) $default_value = 'ユーロ/英ポンド（EUR/GBP）';
+        if ($i == 3) $default_value = 'NZドル/カナダドル（NZD/CAD）';
+        
+        $wp_customize->add_setting('minkabu_currency_pair_' . $i, array(
+            'default' => $default_value,
+            'sanitize_callback' => 'sanitize_text_field',
+            'transport' => 'refresh',
+        ));
+        
+        $wp_customize->add_control('minkabu_currency_pair_' . $i, array(
+            'label' => '第' . $i . '位 通貨ペア',
+            'section' => 'minkabu_currency_ranking',
+            'type' => 'text',
+            'description' => '例: 豪ドル/NZドル（AUD/NZD）',
+        ));
+    }
+}
+add_action('customize_register', 'minkabu_customize_currency_ranking');
+
+// 通貨ペアランキングを取得する関数
+function minkabu_get_currency_pairs() {
+    $pairs = array();
+    for ($i = 1; $i <= 10; $i++) {
+        // デフォルト値を設定
+        $default_value = '';
+        if ($i == 1) $default_value = '豪ドル/NZドル（AUD/NZD）';
+        if ($i == 2) $default_value = 'ユーロ/英ポンド（EUR/GBP）';
+        if ($i == 3) $default_value = 'NZドル/カナダドル（NZD/CAD）';
+        
+        $pair = get_theme_mod('minkabu_currency_pair_' . $i, $default_value);
+        if (!empty($pair)) {
+            $pairs[] = $pair;
+        }
+    }
+    return $pairs;
+}
+
+// 通貨ペアランキングウィジェットを表示する関数
+function minkabu_display_currency_ranking() {
+    if (!get_theme_mod('minkabu_currency_ranking_enabled', true)) {
+        return;
+    }
+    
+    $title = get_theme_mod('minkabu_currency_ranking_title', '人気通貨ペアランキング');
+    $pairs = minkabu_get_currency_pairs();
+    
+    if (empty($pairs)) {
+        return;
+    }
+    ?>
+    <div class="box currency-ranking-widget">
+        <h2 class="h2-normal h2-icon"><?php echo esc_html($title); ?></h2>
+        <ol class="currency-ranking-list">
+            <?php foreach ($pairs as $index => $pair) : ?>
+                <li class="currency-ranking-item">
+                    <span class="ranking-number"><?php echo esc_html($index + 1); ?></span>
+                    <span class="currency-pair-name"><?php echo esc_html($pair); ?></span>
+                </li>
+            <?php endforeach; ?>
+        </ol>
+    </div>
+    <?php
+}

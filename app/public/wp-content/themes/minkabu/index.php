@@ -20,7 +20,7 @@ echo do_shortcode('[minkabu_video_carousel]');
         <?php if (have_posts()) : ?>
             <!-- Section Title -->
             <div class="section-header">
-                <h2 class="section-title">資産形成のはじめ方</h2>
+                <h2 class="section-title">新着記事</h2>
             </div>
             
             <div class="card-grid">
@@ -36,7 +36,7 @@ echo do_shortcode('[minkabu_video_carousel]');
             <!-- View More Button -->
             <div class="section-footer">
                 <a href="<?php echo esc_url(home_url('/category/asset-formation/')); ?>" class="btn-outline">
-                    資産形成のはじめ方
+                    新着記事
                 </a>
             </div>
             
