@@ -1,6 +1,6 @@
 <?php
 /**
- * The template for displaying category archive pages
+ * The template for displaying tag archive pages
  */
 
 get_header(); ?>
@@ -13,11 +13,11 @@ get_header(); ?>
     <div class="main-content">
         <header class="archive-header">
             <h1 class="archive-title">
-                カテゴリー: <?php single_cat_title(); ?>
+                タグ: <?php single_tag_title(); ?>
             </h1>
-            <?php if (category_description()) : ?>
+            <?php if (tag_description()) : ?>
                 <div class="archive-description">
-                    <?php echo category_description(); ?>
+                    <?php echo tag_description(); ?>
                 </div>
             <?php endif; ?>
         </header>
@@ -34,7 +34,7 @@ get_header(); ?>
         <?php else : ?>
             <div class="no-posts">
                 <h2>記事が見つかりませんでした</h2>
-                <p>このカテゴリーにはまだ記事がありません。</p>
+                <p>このタグの記事はまだありません。</p>
             </div>
         <?php endif; ?>
     </div>

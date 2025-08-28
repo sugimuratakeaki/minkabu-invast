@@ -5,10 +5,11 @@
 
 get_header(); ?>
 
-<main class="main-content">
-    <div class="container">
-        <div class="single-layout">
-            <main class="single-main">
+<?php if (!wp_is_mobile()) : ?>
+<div class="l-container">
+    <main class="l-main">
+<?php endif; ?>
+        <div class="main-content">
                 <?php while (have_posts()) : the_post(); ?>
                     <article id="post-<?php the_ID(); ?>" <?php post_class('single-post'); ?>>
                         <header class="single-header">
@@ -113,13 +114,16 @@ get_header(); ?>
                     endif;
                     ?>
                 <?php endwhile; ?>
-            </main>
-            
-            <aside class="single-sidebar">
-                <?php get_sidebar(); ?>
-            </aside>
         </div>
-    </div>
-</main>
+        
+<?php if (!wp_is_mobile()) : ?>
+    </main><!-- .l-main -->
+    
+    <?php get_sidebar(); ?>
+    
+</div><!-- .l-container -->
+<?php else : ?>
+    <?php get_sidebar(); ?>
+<?php endif; ?>
 
 <?php get_footer(); ?>

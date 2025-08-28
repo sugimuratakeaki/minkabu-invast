@@ -662,6 +662,267 @@
 }
 
 /* ===========================================
+   Archive Pages Styles
+=========================================== */
+
+.archive-header {
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.archive-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #333;
+    margin: 0 0 16px;
+}
+
+.archive-description {
+    font-size: 14px;
+    line-height: 1.8;
+    color: #666;
+}
+
+.archive-description p {
+    margin: 0;
+}
+
+/* Single Post Styles */
+.single-post {
+    background: #fff;
+    padding: 40px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.single-header {
+    margin-bottom: 32px;
+}
+
+.single-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+    font-size: 13px;
+    color: #888;
+}
+
+.single-date {
+    color: #666;
+}
+
+.single-categories a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.single-categories a:hover {
+    text-decoration: underline;
+}
+
+.single-title {
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1.4;
+    color: #333;
+    margin: 0 0 16px;
+}
+
+.single-tags {
+    margin-top: 12px;
+}
+
+.single-tags a {
+    display: inline-block;
+    padding: 4px 12px;
+    background: #f0f0f0;
+    border-radius: 4px;
+    font-size: 12px;
+    color: #666;
+    text-decoration: none;
+    margin-right: 8px;
+}
+
+.single-tags a:hover {
+    background: #e0e0e0;
+}
+
+.single-thumbnail {
+    margin-bottom: 32px;
+}
+
+.single-thumbnail img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.single-content {
+    font-size: 16px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 40px;
+}
+
+.single-content h2 {
+    font-size: 24px;
+    margin: 32px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.single-content h3 {
+    font-size: 20px;
+    margin: 24px 0 12px;
+}
+
+.single-content p {
+    margin: 0 0 20px;
+}
+
+.single-content ul,
+.single-content ol {
+    margin: 0 0 20px;
+    padding-left: 30px;
+}
+
+.single-content li {
+    margin-bottom: 8px;
+}
+
+.single-content blockquote {
+    margin: 24px 0;
+    padding: 16px 20px;
+    background: #f8f9fa;
+    border-left: 4px solid #2563eb;
+}
+
+.single-footer {
+    border-top: 2px solid #f0f0f0;
+    padding-top: 32px;
+}
+
+.single-navigation {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 32px;
+    padding-top: 32px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.nav-previous,
+.nav-next {
+    max-width: 45%;
+}
+
+.nav-previous a,
+.nav-next a {
+    color: #2563eb;
+    text-decoration: none;
+}
+
+.nav-previous a:hover,
+.nav-next a:hover {
+    text-decoration: underline;
+}
+
+.related-posts {
+    margin-top: 48px;
+    padding-top: 32px;
+    border-top: 2px solid #f0f0f0;
+}
+
+.related-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 24px;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.related-item {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    transition: transform 0.3s ease;
+}
+
+.related-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.related-thumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.related-item-title {
+    padding: 16px;
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.related-item-title a {
+    color: #333;
+    text-decoration: none;
+}
+
+.related-item-title a:hover {
+    color: #2563eb;
+}
+
+.related-date {
+    padding: 0 16px 16px;
+    font-size: 12px;
+    color: #888;
+    display: block;
+}
+
+/* Responsive for Archive and Single */
+@media (max-width: 768px) {
+    .archive-title {
+        font-size: 24px;
+    }
+    
+    .single-post {
+        padding: 20px;
+    }
+    
+    .single-title {
+        font-size: 24px;
+    }
+    
+    .single-content {
+        font-size: 15px;
+    }
+    
+    .related-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+    }
+    
+    .single-navigation {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .nav-previous,
+    .nav-next {
+        max-width: 100%;
+    }
+}
+
+/* ===========================================
    TriAutoFX Introduction Section
 =========================================== */
 
