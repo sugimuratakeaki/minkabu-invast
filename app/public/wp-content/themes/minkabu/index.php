@@ -51,6 +51,11 @@ echo do_shortcode('[minkabu_video_carousel]');
         <?php endif; ?>
         
         <?php 
+        // トライオートFX紹介セクション
+        get_template_part('template-parts/triautofx', 'intro');
+        ?>
+        
+        <?php 
         // FAQセクション（トップページ表示用）
         minkabu_frontpage_faq_section();
         ?>

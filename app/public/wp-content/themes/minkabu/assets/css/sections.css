@@ -662,6 +662,169 @@
 }
 
 /* ===========================================
+   TriAutoFX Introduction Section
+=========================================== */
+
+.triautofx-intro-section {
+    padding: 60px 0;
+    background: #f8f9fa;
+}
+
+.triautofx-container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Hero Box */
+.triautofx-hero {
+    background: linear-gradient(135deg, #2563eb 0%, #1e50a2 100%);
+    color: white;
+    padding: 40px;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    position: relative;
+    overflow: hidden;
+}
+
+.triautofx-hero-title {
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1.4;
+    margin-bottom: 16px;
+}
+
+.triautofx-hero-title .highlight {
+    position: relative;
+    display: inline-block;
+    padding: 0 4px;
+    background: linear-gradient(transparent 60%, rgba(255, 215, 0, 0.8) 60%);
+}
+
+.triautofx-hero-text {
+    font-size: 14px;
+    line-height: 1.8;
+    opacity: 0.95;
+    margin-bottom: 20px;
+}
+
+.triautofx-icons {
+    position: absolute;
+    right: 40px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    gap: 12px;
+}
+
+.triautofx-icons span {
+    font-size: 32px;
+    opacity: 0.3;
+}
+
+/* Diagnosis Box */
+.triautofx-diagnosis {
+    background: linear-gradient(135deg, #4f46e5 0%, #2563eb 100%);
+    color: white;
+    padding: 24px 40px;
+    border-radius: 12px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.diagnosis-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Articles Section */
+.triautofx-articles-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 24px;
+}
+
+/* トライオートFXセクション内のカードグリッドはマージン調整 */
+.triautofx-intro-section .card-grid {
+    margin-bottom: 40px;
+}
+
+/* CTA Button */
+.triautofx-cta {
+    text-align: center;
+}
+
+.triautofx-cta-button {
+    display: inline-block;
+    background: linear-gradient(135deg, #2563eb 0%, #1e50a2 100%);
+    color: white;
+    padding: 20px 48px;
+    border-radius: 30px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    transition: all 0.3s ease;
+    line-height: 1.4;
+}
+
+.triautofx-cta-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+    background: linear-gradient(135deg, #1e50a2 0%, #2563eb 100%);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .triautofx-intro-section {
+        padding: 40px 0;
+    }
+    
+    .triautofx-hero {
+        padding: 24px;
+    }
+    
+    .triautofx-hero-title {
+        font-size: 24px;
+        margin-bottom: 12px;
+    }
+    
+    .triautofx-hero-text {
+        font-size: 13px;
+        margin-bottom: 16px;
+    }
+    
+    .triautofx-icons {
+        display: none;
+    }
+    
+    .triautofx-diagnosis {
+        padding: 20px 24px;
+        margin-bottom: 32px;
+    }
+    
+    .diagnosis-title {
+        font-size: 16px;
+    }
+    
+    .triautofx-articles-title {
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+    
+    .triautofx-intro-section .card-grid {
+        margin-bottom: 32px;
+    }
+    
+    .triautofx-cta-button {
+        padding: 16px 32px;
+        font-size: 14px;
+    }
+}
+
+/* ===========================================
    Currency Ranking Widget
 =========================================== */
 
